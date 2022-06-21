@@ -77,7 +77,7 @@
                             @foreach($users as $u)
                             <tr class="hover:bg-gray-100 focus-within:bg-gray-100 tr-data">
                                 <td class="border-t">
-                                    <span tabindex="-1" class="px-6 py-4 flex items-center focus:outline-none">{{$u->id}}</span>
+                                    <span tabindex="-1" class="px-6 py-4 flex items-center focus:outline-none">{{$u->user_id}}</span>
                                 </td>
                                 <td class="border-t">
                                     <span tabindex="-1" class="px-6 py-4 flex items-center focus:outline-none">{{$u->firstname}} {{$u->lastname}}</span>

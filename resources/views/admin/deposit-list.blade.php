@@ -110,7 +110,7 @@
                                         @endif
                                     </td>
                                     <td class="border-t">
-                                        <span tabindex="-1" class="px-6 py-4 flex items-center focus:outline-none">{{$d->user->id}}</span>
+                                        <span tabindex="-1" class="px-6 py-4 flex items-center focus:outline-none">{{$d->user->user_id}}</span>
                                     </td>
                                     <td class="border-t">
                                         <span tabindex="-1" class="px-6 py-4 flex items-center focus:outline-none">{{date('M j, Y', strtotime($d->created_at))}}</span>
