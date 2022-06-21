@@ -11,6 +11,7 @@
     <link href="/questergatecapital/public/css/style.css" rel="stylesheet">
     <link href="/questergatecapital/public/css/tooltips.css" rel="stylesheet">
     <link href="/questergatecapital/public/css/scrolltop.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css" integrity="sha512-nNlU0WK2QfKsuEmdcTwkeh+lhGs6uyOxuUs+n+0oXSYDok5qy0EI0lt01ZynHq6+p/tbgpZ7P+yUb+r71wqdXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style type="text/css">
     .alert-flash {
       right: 25px;
@@ -87,6 +88,7 @@
                                 <th class="px-6 pt-6 pb-4">Reference</th> 
                                 <th class="px-6 pt-6 pb-4">Amount</th> 
                                 <th class="px-6 pt-6 pb-4">Date</th>
+                                <th class="px-6 pt-6 pb-4">Proof</th>
                             </tr>
 
                             @foreach($deposit as $d)
@@ -115,6 +117,11 @@
                                 </td>
                                 <td class="border-t">
                                     <span tabindex="-1" class="px-6 py-4 flex items-center focus:outline-none">{{$d['created_at']}}</span>
+                                </td>
+                                <td class="border-t">
+                                    <a href="{{$d['proof_image']}}" data-fancybox data-caption="Proof of payment">
+                                        <button class="px-4 py-2 text-white font-semibold bg-lime-100 border rounded focus:outline-none focus:shadow-outline w-full deposit-fund"><span>View Proof</span></button>
+                                    </a>
                                 </td>
                             </tr> 
                             @endforeach
@@ -161,16 +168,18 @@
                                             <p class="text-sm pl-3"><strong>Account Name:</strong> QuesterGate Limited</p>
                                             <p class="text-sm pl-9"><strong>Bank Name:</strong> Zenith bank PLC</p>
                                             <p class="text-sm"><strong>Account number:</strong> 1219050239</p>
-                                            <p class="text-sm"><strong>Remarks/Title/Reason of transfer (optional):</strong> Write your email or phone number
+                                            <p class="text-sm"><strong>Remarks/Title/Reason of transfer (optional):</strong> Write your Questergate USER ID Number
                                             </p>
 
-                                            <p class="mb-2 mt-3"><strong style="color: #378dbd !important">STEP 2:</strong> <span class="text-sm">After payment is made, send an email to <span class="text-blue-700">payments@questergate.com</span> and attach the following details below to the email:</span><p>
+                                            <p class="mb-2 mt-3"><strong style="color: #378dbd !important">STEP 2:</strong> <span class="text-sm">After payment is made, send a message to Questergate Customer Satisfaction center via
+                                                Whatsapp on <a href="https://wa.link/68pals" target="_blank"><span class="text-blue-700">https://wa.link/68pals (+234 814 447 7866).</span> </a></span><p>
+                                            <label><strong>The content of the message should be:</strong></label> 
                                                 
                                             <p class="text-sm"><strong>1.</strong> A clear snapshot/screenshot of the Payment receipt;</p>
 
-                                            <p class="text-sm"><strong>2.</strong> Your email or phone number.</p>
+                                            <p class="text-sm"><strong>2.</strong> Your Questergate User ID Number..</p>
 
-                                            <p class="mb-2 mt-3"><strong style="color: #378dbd !important">STEP 3:</strong> <span class="text-sm">Your QG-Wallet will be credited in less than 24 hours.</span><p>
+                                            <p class="mb-2 mt-3"><strong style="color: #378dbd !important">STEP 3:</strong> <span class="text-sm">Your QG-Wallet will be credited in less than 30 minutes.</span><p>
                                         </div>
                                     </div> 
                                 </div>
@@ -233,5 +242,6 @@
         <script type="text/javascript" src="/questergatecapital/public/js/moment.js"></script>
         <script type="text/javascript" src="/questergatecapital/public/js/script.js?v=17"></script>
         <script type="text/javascript" src="/questergatecapital/public/js/plugin.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </body>
 </html>

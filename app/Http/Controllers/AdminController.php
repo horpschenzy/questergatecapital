@@ -23,6 +23,7 @@ use App\Exports\WithdrawalsExport;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -325,12 +326,21 @@ class AdminController extends Controller
                 'status'=>422
             ]);
         }
+        $proofImgUrl = '';
+        if ($request->has('proof')) {
+            $uploadedFile = $request->file('proof');
+            $proofImg = uniqid().'.png';
+            $proofImgUrl = '/img/deposit/' . $proofImg;
+            Image::make($request->proof)->save(public_path($proofImgUrl));
+
+        }
         if($request->filled('amount') && $request->filled('user_id') && $request->filled('status')){
             Deposit::create([
                 'status'=>(int)$request->status,
                 'reference'=>Str::random(15),
                 'amount'=>$request->amount,
-                'user_id'=>(int)$request->user_id
+                'user_id'=>(int)$request->user_id,
+                'proof_image' => $proofImgUrl
             ]);
 
             return response()->json([
