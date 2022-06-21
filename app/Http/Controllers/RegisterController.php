@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Traits\ValidationRuleTrait;
 use App\Http\Traits\JusibeTrait;
 use App\Http\Traits\HelperTrait;
+use App\Models\Subscribe;
 
 class RegisterController extends Controller
 {
@@ -40,7 +41,7 @@ class RegisterController extends Controller
             ]);
         }
 
-        $user = User::where('referral_code', $request->referral_code)->first();
+        // $user = User::where('referral_code', $request->referral_code)->first();
 
         $data = $request->all();
         $check = $this->create($data);
@@ -55,6 +56,12 @@ class RegisterController extends Controller
             'user_id'=>$check->id,
             'amount'=>0.00,
             'reference'=>strtoupper($this->generateRandomString())
+        ]);
+
+        Subscribe::create([
+            'first_name'=>$request->firstname,
+            'email'=>$request->email,
+            'user_type'=> 'member'
         ]);
 
         // if($user){

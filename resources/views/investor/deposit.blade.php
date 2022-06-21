@@ -119,7 +119,7 @@
                                     <span tabindex="-1" class="px-6 py-4 flex items-center focus:outline-none">{{$d['created_at']}}</span>
                                 </td>
                                 <td class="border-t">
-                                    <a href="{{$d['proof_image']}}" data-fancybox data-caption="Proof of payment">
+                                    <a href="{{'/questergatecapital/public'.$d['proof_image']}}" data-fancybox data-caption="Proof of payment">
                                         <button class="px-4 py-2 text-white font-semibold bg-lime-100 border rounded focus:outline-none focus:shadow-outline w-full deposit-fund"><span>View Proof</span></button>
                                     </a>
                                 </td>

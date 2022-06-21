@@ -713,6 +713,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <!-- END -->
     
+    <div class="container">
+      <div class="w-md-100 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
+      <h2>Don't get left behind financially</h2>
+      <span class="d-block small font-weight-bold text-cap mb-2">Learn simple livestyles tips that will help you stay ahead financilly in the present day economic realities.</span>
+      <span class="d-block small font-weight-bold text-cap mb-2">Subscribe to our free monthly "wealth savy notes"</span>
+
+        <form action="/subscribe" method="POST" class="register-form">
+          @csrf
+        <div aria-required="true" aria-invalid="false">
+          <input style="width: 100%;" id="fullname" name="firstname" type="text" placeholder="First Name" class="bg-white text w-full focus:outline-none px-3 py-3 rounded text-gray-900 border focus:bg-white mt-3 border-gray-400">
+          <!---->
+        </div>
+    
+        <div aria-required="true" aria-invalid="false">
+          <div class="relative mt-3">
+            <input style="width: 100%;" id="email" name="email" type="text" placeholder="Email" class="bg-white text w-full focus:outline-none px-3 py-3 rounded text-gray-900 border focus:bg-white border-gray-400">
+          </div>
+        </div>
+        <div class="relative mt-3">
+          <button type="submit" style="width: 80%;" class="btn btn-sm btn-indigo u-btn-indigo transition-3d-hover" >
+            Subscribe
+          </button>
+        </div>
+          
+          <!---->
+      </form>
+    </div>
+    </div>
     
 
     <div class="container">

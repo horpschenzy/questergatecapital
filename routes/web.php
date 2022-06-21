@@ -17,6 +17,7 @@ use App\Http\Controllers\InvestmentPlanController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\InvestmentCalculatorController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SubscribeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +77,8 @@ Route::get('/logout', [LoginController::class,'logout']);
 
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'registerUser']);
+
+Route::post('/subscribe', [SubscribeController::class, 'createSubscriber']);
 
 Route::get('/forgot', [ForgotPasswordController::class, 'index']);
 Route::post('/send/reset/password/link', [ForgotPasswordController::class, 'sendEmail']);
