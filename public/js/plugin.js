@@ -18,7 +18,7 @@ let Plugin = {
 			"email": serializeData[3].value,
 			"password": serializeData[4].value,
 			"password_confirmation": serializeData[5].value,
-			"referral_code": serializeData[6].value
+			// "referral_code": serializeData[6].value
 		}
 
 		var postData = JSON.stringify(jsonData);	
@@ -115,7 +115,6 @@ let Plugin = {
 		.then(response => response.json())
 		.then(result => {	
 			$(".err-txt").html("");
-
 			if(result.code == '00'){
 				$(".display-success").show();
 				$(".display-error").hide();

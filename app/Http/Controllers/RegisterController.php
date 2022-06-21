@@ -57,13 +57,13 @@ class RegisterController extends Controller
             'reference'=>strtoupper($this->generateRandomString())
         ]);
 
-        if($user){
-            Referral::create([
-                'referrer'=>$user->id,
-                'referred'=>$check->id,
-                'is_deleted'=>0
-            ]);
-        }
+        // if($user){
+        //     Referral::create([
+        //         'referrer'=>$user->id,
+        //         'referred'=>$check->id,
+        //         'is_deleted'=>0
+        //     ]);
+        // }
 
         //$publicKey = env('JUSIBE_PUBLIC_KEY');
         //$accessToken = env('JUSIBE_ACCESS_TOKEN');
@@ -90,7 +90,9 @@ class RegisterController extends Controller
 
     public function create(array $data)
     {
-        return User::create([
+        //get the last user in the  users table
+        // then add one to user_id
+        $user =  User::create([
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
             'phone' => $data['phone'],
@@ -100,5 +102,8 @@ class RegisterController extends Controller
             'is_active'=> 1,
             'is_deleted'=>0
         ]);
+        $userId = 1000 + $user->id;
+        User::where('id', $user->id)->update(['user_id' => $userId]);
+        return $user;
     }
 }

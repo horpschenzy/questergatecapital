@@ -60,6 +60,7 @@
                     <div class="bg-white rounded shadow overflow-x-auto mt-6">
                         <table class="w-full whitespace-no-wrap withdrawal-list">
                             <tr class="text-left font-semibold">
+                                <th class="px-6 pt-6 pb-4 text-center">User Id</th>
                                 <th class="px-6 pt-6 pb-4 text-center">Fullname</th> 
                                 <th class="px-6 pt-6 pb-4">Phone</th> 
                                 <th class="px-6 pt-6 pb-4">Email</th> 
@@ -71,6 +72,9 @@
                             @if(!empty($users) && $users->count())
                             @foreach($users as $u)
                             <tr class="hover:bg-gray-100 focus-within:bg-gray-100 tr-data">
+                                <td class="border-t">
+                                    <span tabindex="-1" class="px-6 py-4 flex items-center focus:outline-none">{{$u->user_id}}</span>
+                                </td>
                                 <td class="border-t">
                                     @if (Auth::user()->usertype == 'superadmin')
                                     <a href="{{url('admin/user/'.$u->id)}}"><span tabindex="-1" class="px-6 py-4 flex items-center focus:outline-none">{{$u->firstname}} {{$u->lastname}}</span></a>

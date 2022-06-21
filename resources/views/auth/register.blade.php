@@ -94,10 +94,10 @@
                                     </div>
                                 </div>
 
-                                <div aria-required="true" aria-invalid="false">
+                                {{-- <div aria-required="true" aria-invalid="false">
                                     <input id="referral_code" name="referral_code" type="text" placeholder="Enter referral code if any..." class="bg-white text w-full focus:outline-none px-3 py-3 rounded text-gray-900 border focus:bg-white mt-3 border-gray-400" value="{{$refcode}}">
                                     <p class="text-red-500 text-xs italic my-2 err-txt" id="referral-code-err"></p>
-                                </div>
+                                </div> --}}
 
                             </div>
 

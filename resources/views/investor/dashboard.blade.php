@@ -41,7 +41,7 @@
 
                     <div class="mt-16 mx-auto text-xl md:text-2xl text-gray-900 leading-snug text-center tracking-tight">
                         Hello
-                        <span class="font-semibold fullname">{{$user->firstname}}</span>, what would you like to do today?
+                        <span class="font-semibold fullname">{{$user->firstname}} ({{$user->user_id}})</span>, what would you like to do today?
                     </div> 
 
                     <div class="mt-10 flex justify-center items-center">
