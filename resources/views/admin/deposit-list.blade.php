@@ -141,7 +141,7 @@
 
                         </div>
                         
-                        <form method="POST" class="add-deposit-form">
+                        <form method="POST" class="add-deposit-form" enctype="multipart/form-data">
                             <h4 class="font-semibold text-gray-800 text-lg leading-tight border-b-2 border-gray-200 pb-4 mt-4">
                                 <span>Add Deposit Status</span>
                                 <button type="button" class="block text-gray-600 hover:text-gray-800 float-right" onclick="closeModal('.add-deposit');"><svg viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6"><path d="M17.293 18.707a1 1 0 001.414-1.414L13.414 12l5.293-5.293a1 1 0 00-1.414-1.414L12 10.586 6.707 5.293a1 1 0 00-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 101.414 1.414L12 13.414l5.293 5.293z"></path></svg></button>
@@ -163,6 +163,12 @@
                                     <div aria-required="true" aria-invalid="true">
                                         <label class="text-gray-700 block mt-2"><strong>Amount</strong> <small></small></label> 
                                         <input type="number" name="amount" class="bg-white text w-full focus:outline-none px-3 py-2 rounded text-gray-900 border focus:bg-white mt-2 border-gray-400" required>
+                                    </div>
+                                </div> 
+                                <div class="w-full md:w-full px-3">
+                                    <div aria-required="true" aria-invalid="true">
+                                        <label class="text-gray-700 block mt-2"><strong>Proof of payment</strong> <small></small></label> 
+                                        <input type="file" name="proof" class="bg-white text w-full focus:outline-none px-3 py-2 rounded text-gray-900 border focus:bg-white mt-2 border-gray-400" required>
                                     </div>
                                 </div> 
                                 <div class="w-full md:w-full px-3">

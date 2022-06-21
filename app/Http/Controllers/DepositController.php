@@ -48,6 +48,7 @@ class DepositController extends Controller
                 'amount'=>number_format($d->amount,2),
                 'reference'=>$d->reference,
                 'remark'=>$this->remark,
+                'proof_image'=>$d->proof_image,
                 'created_at'=>$dt->format('M j, Y h:i A')
             ];
 
