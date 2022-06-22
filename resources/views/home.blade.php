@@ -271,92 +271,97 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="row">
     
           <!-- Card 1 -->
-      <div class="col-lg-3 pt-7 pt-lg-0">
-        <div class="card mt-lg-n7 p-3 border">
-          <div class="mb-7" style="color: #000">
-            <span class="d-block font-weight-bold text-cap mb-2" style="font-size: 1.5rem;">QG-X12 <span class="font-bold" style="color: #001D3D">FLEX</span> PLAN</span>
-            <p>Investment duration for this plan is 12 months (30days per month) cycle.</p>
+      <div class="col-lg-4 pt-7 pt-lg-0">
+        <div class="card mt-lg-n7 p-3 border btn-indigo">
+          <div class="mb-4" style="color: #fff">
+            <span class="d-block font-weight-bold text-cap mb-2" style="font-size: 1.5rem;">QG <span class="font-bold" style="color: #3b8cb9">FLEX </span>- STUDENT</span>
+            <p>This plan helps Students (and Non Students) save towards a personal goal and at the same time develop a habit of safe investing.</p>
 
-            <p>Minimum Capital required to activate this plan is ₦10,000.</p>
+            <p>Minimum Capital required to activate this plan is ₦5,000.</p>
 
-            <p>This plan is suitable for investors with a flexible stream of income who would like the freedom to keep adding money to their investment capital whenever they desire to.</p>
-            <a href="#"><strong>Read more</strong></a>
+            <p>You set a duration that suits your personal goal.</p>
+            <p>Regularly add to your capital as you desire.</p>
+            <a style="color: #3b8cb9" href="#"><strong>Read more</strong></a>
           </div>
         </div>
       </div>
       <!-- End Card -->
 
       <!-- Card 2 -->
-      <div class="col-lg-3 pt-7 pt-lg-0">
-        <div class="card mt-lg-n7 p-3 border">
-          <div class="mb-4" style="color: #000">
-            <span class="d-block font-weight-bold text-cap mb-2" style="font-size: 1.5rem;">QG-X24 <span class="font-bold" style="color: #001D3D">FLEX</span> PLAN</span>
-            <p>Investment duration for this plan is 24 months (30days per month) cycle.</p>
+      <div class="col-lg-4 pt-7 pt-lg-0">
+        <div class="card mt-lg-n7 p-3 border btn-indigo">
+          <div class="mb-4" style="color: #fff">
+            <span class="d-block font-weight-bold text-cap mb-2" style="font-size: 1.5rem;">QG <span class="font-bold" style="color: #3b8cb9">FLEX </span>- SALARY</span>
+            <p>With this plan, Salary Earners can access safe investments which can serve as another stream of income and help them build wealth.</p>
 
             <p>Minimum Capital required to activate this plan is ₦10,000.</p>
 
-            <p>This plan is suitable for investors with long term goals who have a flexible stream of income and would like the freedom to keep adding money to their investment capital whenever they desire to.</p>
-            <a href="#"><strong>Read more</strong></a>
+            <p>You set a duration that suits your personal goal.</p>
+            <p>Regularly add to your capital as you desire.</p>
+            <a style="color: #3b8cb9" href="#"><strong>Read more</strong></a>
           </div>
         </div>
       </div>
       <!-- End Card -->
 
       <!-- Card 3 -->
-      <div class="col-lg-3 pt-7 pt-lg-0" >
-        <div class="card mt-lg-n7 p-3 border">
-          <div style="color: #000; margin-bottom: 97px">
-            <span class="d-block font-weight-bold text-cap mb-2" style="font-size: 1.5rem;">QG-6 <span class="font-bold" style="color: #001D3D">FIXED</span> PLAN</span>
-            <p>Investment duration for this plan is 6 months</p>
-            <p>Minimum Capital required to activate this plan is ₦100,000.</p>
-            <p>This plan is suitable for investors who are looking to invest their money for a short duration.</p>
-            <a href="#"><strong>Read more</strong></a>
+      <div class="col-lg-4 pt-7 pt-lg-0" >
+        <div class="card mt-lg-n7 p-3 border btn-indigo">
+          <div style="color: #fff;" class="mb-7">
+            <span class="d-block font-weight-bold text-cap mb-2" style="font-size: 1.5rem;">QG <span class="font-bold" style="color: #3b8cb9">FLEX </span>- BUSINESS</span>
+            <p>As a Business Owner you can use this plan to invest towards expansion of your business and other personal goals.</p>
+            <p>Minimum Capital required to activate this plan is ₦15,000.</p>
+            <p>You set a duration that suits your personal goal.</p>
+            <p>Regularly add to your capital as you desire.</p>
+            <a style="color: #3b8cb9" href="#"><strong>Read more</strong></a>
           </div>
         </div>
       </div>
       <!-- End Card -->
-
+        </div>
+        <div class="row justify-content-center">
       <!-- Card 4 -->
-      <div class="col-lg-3 pt-7 pt-lg-0">
-        <div class="card mt-lg-n7 p-3 border">
-          <div style="color: #000; margin-bottom: 70px">
-            <span class="d-block font-weight-bold text-cap mb-2" style="font-size: 1.5rem;">QG-12 <span class="font-bold" style="color: #001D3D">FIXED</span> PLAN</span>
-            <p>Investment duration for this plan is 12 months</p>
+      <div class="col-lg-4 pt-7 pt-lg-0"  style="margin-top: 70px;">
+        <div class="card mt-lg-n7 p-3 border btn-indigo">
+          <div style="color: #fff;">
+            <span class="d-block font-weight-bold text-cap mb-2" style="font-size: 1.5rem;">QG-12 <span class="font-bold" style="color: #3b8cb9">FIXED</span> PLAN</span>
+            <p>Do you want to set aside money for a business or personal project and need a safe place to save and invest it? Then this plan is for you.</p>
+            <p>Investment duration for this plan is 12 months.</p>
             <p>Minimum Capital required to activate this plan is ₦100,000.</p>
-            <p>This plan is suitable for investors who have set yearly goals for certain projects and are looking to invest towards those goals.</p>
-            <a href="#"><strong>Read more</strong></a>
+            <a style="color: #3b8cb9" href="#"><strong>Read more</strong></a>
           </div>
         </div>
       </div>
       <!-- End Card -->
 
       <!-- Card 5 -->
-      <div class="col-lg-3 pt-7 pt-lg-0" style="margin-top: 70px;">
-        <div class="card mt-lg-n7 p-3 border">
-          <div class="mb-0" style="color: #000">
-            <span class="d-block font-weight-bold text-cap mb-2" style="font-size: 1.5rem;">QG-18 <span class="font-bold" style="color: #001D3D">FIXED</span> PLAN</span>
-            <p>Investment duration for this plan is 18 months</p>
-            <p>Minimum Capital required to activate this plan is ₦100,000.</p>
-            <p>This plan is suitable for investors with a long term investment mindset and have set multi-year goals for certain projects and would like to invest in preparation for the projects.</p>
-            <a href="#"><strong>Read more</strong></a>
+      <div class="col-lg-4 pt-7 pt-lg-0" style="margin-top: 70px;">
+        <div class="card mt-lg-n7 p-3 border btn-indigo">
+          <div class="mb-4" style="color: #fff">
+            <span class="d-block font-weight-bold text-cap mb-2" style="font-size: 1.5rem;">QG-24 <span class="font-bold" style="color: #3b8cb9">FIXED</span> PLAN</span>
+            <p>Do you have a multi-year project planned with money set aside for it?
+              You can use this plan to protect your money against inflation and also yield good returns from your money before the time of the project.</p>
+            <p>Duration of this plan is 24 months (2 years).</p>
+            <p>Minimum Capital for this plan is ₦100,000.</p>
+            <a style="color: #3b8cb9" href="#"><strong>Read more</strong></a>
           </div>
         </div>
       </div>
       <!-- End Card -->
 
-      <!-- Card 6 -->
-      <div class="col-lg-3 pt-7 pt-lg-0" style="margin-top: 70px;">
-        <div class="card mt-lg-n7 p-3 border">
-          <div class="mb-4" style="color: #000">
-            <span class="d-block font-weight-bold text-cap mb-2" style="font-size: 1.5rem;">QG-24 <span class="font-bold" style="color: #001D3D">FIXED</span> PLAN</span>
-            <p>Investment duration for this plan is 24 months (2 years)</p>
-            <p>Minimum Capital required to activate this plan is ₦100,000.</p>
-            <p>This plan is suitable for investors who want to set aside funds for mutli-year project and have a long term mindset towards investment.</p>
-            <a href="#"><strong>Read more</strong></a>
-          </div>
-        </div>
-      </div>
-      <!-- End Card -->
+          <!-- Card 6 -->
+          {{-- <div class="col-lg-3 pt-7 pt-lg-0" style="margin-top: 70px;">
+            <div class="card mt-lg-n7 p-3 border">
+              <div class="mb-4" style="color: #000">
+                <span class="d-block font-weight-bold text-cap mb-2" style="font-size: 1.5rem;">QG-24 <span class="font-bold" style="color: #001D3D">FIXED</span> PLAN</span>
+                <p>Investment duration for this plan is 24 months (2 years)</p>
+                <p>Minimum Capital required to activate this plan is ₦100,000.</p>
+                <p>This plan is suitable for investors who want to set aside funds for mutli-year project and have a long term mindset towards investment.</p>
+                <a href="#"><strong>Read more</strong></a>
+              </div>
+            </div>
+          </div> --}}
+          <!-- End Card -->
     
           
     
@@ -469,7 +474,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- INVESTMENT CALCULATOR -->
     <div class="container space-1">
         <h2><strong>INVESTMENT CALCULATOR</strong></h2>
-        <div class="row no-gutters align-items-lg-center mb-7 mb-md-11">
+        <div class="row no-gutters align-items-lg-center mb-4">
             <div class="col-lg-12 shadow-lg rounded">
               <div class="row">
                 <div class="card shadow-none col-12">
