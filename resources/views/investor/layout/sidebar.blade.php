@@ -72,13 +72,13 @@
                 </span>
             </a>
 
-            <a aria-selected="0" href="{{url('investor/referral')}}" class="-mx-3 px-3 py-2 mb-2 flex items-center justify-between text-sm font-medium rounded-lg {{Request::is('investor/referral') ? 'bg-gray-300 menu-link-active' : 'hover:bg-gray-300 menu-link'}}">
+            {{-- <a aria-selected="0" href="{{url('investor/referral')}}" class="-mx-3 px-3 py-2 mb-2 flex items-center justify-between text-sm font-medium rounded-lg {{Request::is('investor/referral') ? 'bg-gray-300 menu-link-active' : 'hover:bg-gray-300 menu-link'}}">
                 <span class="inline-flex items-center">                    
                     <svg viewBox="0 0 19 19" class="h-6 w-6 transition-all ease-out transition-medium" xmlns="http://www.w3.org/2000/svg"><g fill="none"><path d="M13.445 13.861C12.413 12.885 10.362 12.22 8 12.22s-4.413.665-5.445 1.641a8 8 0 1110.89 0zM8 9.231a3.077 3.077 0 100-6.154 3.077 3.077 0 000 6.154z" fill="#4f566b"  class="ic-pri"></path><path d="M13.944 13.354A7.98 7.98 0 018 16a7.98 7.98 0 01-5.944-2.646C2.76 12.043 5.154 11.077 8 11.077s5.24.966 5.944 2.277z" fill="#4f566b"  class="ic-sec"></path></g></svg>
 
                     <span class="ml-2 {{Request::is('investor/referral') ? 'font-semibold mn-active' : 'text-gray-700'}}">Referrals</span>
                 </span>
-            </a>
+            </a> --}}
         </div>
         <!-- end -->
     </nav>

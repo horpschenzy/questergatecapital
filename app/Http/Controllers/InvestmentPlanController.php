@@ -413,23 +413,23 @@ class InvestmentPlanController extends Controller
                 'is_deleted'=>0
     		]);
     
-            $referral = Referral::where('referred', $plan->user_id)->first();
+            // $referral = Referral::where('referred', $plan->user_id)->first();
     
-            if($referral){
-                if($referral->is_paid != 1){
-                    Referral::where('referred', $plan->user_id)->update([
-                        'amount'=>10000,
-                        'is_paid'=>1
-                    ]);
+            // if($referral){
+            //     if($referral->is_paid != 1){
+            //         Referral::where('referred', $plan->user_id)->update([
+            //             'amount'=>10000,
+            //             'is_paid'=>1
+            //         ]);
     
-                    QGWallets::create([
-                        'amount'=>10000,
-                        'user_id'=>$referral->referrer,
-                        'status'=>1,
-                        'is_deleted'=>0
-                    ]);
-                }
-            }
+            //         QGWallets::create([
+            //             'amount'=>10000,
+            //             'user_id'=>$referral->referrer,
+            //             'status'=>1,
+            //             'is_deleted'=>0
+            //         ]);
+            //     }
+            // }
         }
 
         $comment = 'An Investment with reference number '.$plan->reference.' has been activated by '.Auth::user()->firstname.' '.Auth::user()->lastname;

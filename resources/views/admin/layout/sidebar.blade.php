@@ -199,6 +199,13 @@
                     <span class="ml-2 {{Request::is('/admin/audits/users') ? 'font-semibold mn-active' : 'text-gray-700'}}">Audit Logs</span>
                 </span>
             </a>
+            <a aria-selected="0" href="{{url('/admin/subscribers')}}" class="-mx-3 px-3 py-2 mb-2 flex items-center justify-between text-sm font-medium rounded-lg {{Request::is('/admin/subscribers') ? 'bg-gray-300 menu-link-active' : 'hover:bg-gray-300 menu-link'}}">
+                <span class="inline-flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6 transition-all ease-out transition-medium"><path d="M6 2h6v6c0 1.1.9 2 2 2h6v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2zm2 11a1 1 0 0 0 0 2h8a1 1 0 0 0 0-2H8zm0 4a1 1 0 0 0 0 2h4a1 1 0 0 0 0-2H8z" class="ic-pri"></path> <polygon points="14 2 20 8 14 8" class="ic-sec"></polygon></svg> 
+
+                    <span class="ml-2 {{Request::is('/admin/subscribers') ? 'font-semibold mn-active' : 'text-gray-700'}}">Subscribers</span>
+                </span>
+            </a>
         </div>
         <!-- end -->
     </nav>

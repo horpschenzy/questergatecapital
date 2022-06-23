@@ -1957,6 +1957,37 @@ function changeDepositStatus(e){
         }
     });
 }
+function addSubcriber(e){
+    // $(e).html('<span class="flex justify-center items-center"><svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" stroke="#fff" class="h-4 w-4 mr-2"><g fill="none" fill-rule="evenodd"><g transform="translate(1 1)" stroke-width="2"><circle stroke-opacity="0.5" cx="18" cy="18" r="18"></circle> <path d="M36 18c0-9.94-8.06-18-18-18" transform="rotate(349.238 18 18)"><animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="1s" repeatCount="indefinite"></animateTransform></path></g></g></svg> <span class="font-normal">Loading...</span></span>');
+    
+    let formData = new FormData();           
+    formData.append("firstname", document.getElementsByName("firstname")[0].value);
+    formData.append("email", document.getElementsByName("email")[0].value);
+    var ajaxPost = $.ajax({
+        url: _protocol+""+_shost+"/subscribe",
+        method: "POST",
+        data: formData,
+        dataType: "json",
+        processData: false,
+        contentType: false,
+        headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+    });
+
+    ajaxPost.done(function(res){
+        if(res.status == 201){
+            $(".subscribe-response").html('<div class="alert alert-success"><h3><strong>Subcribed Successfully!</strong></h3></div>');
+            $(e).html("Subscriber Added");
+
+            setTimeout(function(){
+                window.location.reload();
+            },2000);
+        }
+        else{
+            $(".subscribe-response").html('<div class="alert alert-error"><h3><strong>'+res.message+'</strong></h3></div>');
+             $(e).html("Subscribe");
+        }
+    });
+}
 function addDepositStatus(e){
     $(e).html('<span class="flex justify-center items-center"><svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" stroke="#fff" class="h-4 w-4 mr-2"><g fill="none" fill-rule="evenodd"><g transform="translate(1 1)" stroke-width="2"><circle stroke-opacity="0.5" cx="18" cy="18" r="18"></circle> <path d="M36 18c0-9.94-8.06-18-18-18" transform="rotate(349.238 18 18)"><animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="1s" repeatCount="indefinite"></animateTransform></path></g></g></svg> <span class="font-normal">Loading...</span></span>');
     

@@ -57,9 +57,10 @@
 
             <div class="">
               <div class="relative">
-                  <select class="px-3 py-3 rounded text-gray-900 border bg-white mt-2 border-gray-400" style="width: 100%; font-weight: bold" id="invDuration">                                                                                             <option value="6" selected="">QG-6: ROI 10%</option>
-                      <option value="12">QG-12: Min. ROI 45%</option>
-                      <option value="18">QG-18: Min. ROI 70%</option>
+                  <select class="px-3 py-3 rounded text-gray-900 border bg-white mt-2 border-gray-400" style="width: 100%; font-weight: bold" id="invDuration">                                                                                             
+                      {{-- <option value="6" selected="">QG-6: ROI 10%</option> --}}
+                      <option value="12" selected="">QG-12: Min. ROI 45%</option>
+                      {{-- <option value="18">QG-18: Min. ROI 70%</option> --}}
                       <option value="24">QG-24: Min. ROI 120%</option>
                   </select>
               </div>

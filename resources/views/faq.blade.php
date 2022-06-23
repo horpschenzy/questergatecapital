@@ -90,7 +90,7 @@
               <li onclick="showFaqMenuContent(this, 'payment');"><a href="#">PAYMENT</a></li>
               <li onclick="showFaqMenuContent(this, 'withdrawal');"><a href="#">WITHDRAWAL</a></li>
               <li onclick="showFaqMenuContent(this, 'profile');"><a href="#">YOUR QG PROFILE</a></li>
-              <li onclick="showFaqMenuContent(this, 'referral');"><a href="#">REFERRAL</a></li>
+              {{-- <li onclick="showFaqMenuContent(this, 'referral');"><a href="#">REFERRAL</a></li> --}}
               <li onclick="showFaqMenuContent(this, 'security');"><a href="#">SECURITY</a></li>
             </ul>
           </nav>
@@ -132,9 +132,9 @@
             <button style="width: 100%" class="text-left btn btn-sm btn-indigo u-btn-indigo transition-3d-hover" onclick="showFaqMenuContent(this, 'profile');">YOUR QG PROFILE</button>
           </div>
 
-          <div class="mb-3">
+          {{-- <div class="mb-3">
             <button style="width: 100%" class="text-left btn btn-sm btn-indigo u-btn-indigo transition-3d-hover" onclick="showFaqMenuContent(this, 'referral');">REFERRAL</button>
-          </div>
+          </div> --}}
 
           <div class="mb-3">
             <button style="width: 100%" class="text-left btn btn-sm btn-indigo u-btn-indigo transition-3d-hover" onclick="showFaqMenuContent(this, 'security');">SECURITY</button>
@@ -252,17 +252,17 @@
 
               <div class="card shadow-none mb-3">
                 <div class="card-header card-collapse" id="basicsHeadingOne">
-                  <a class="btn btn-link btn-block d-flex justify-content-between card-btn bg-white px-0 collapsed" href="javascript:;" role="button" id="acc4" onclick="toggleFaq(this);">
+                  <a class="btn btn-link btn-block d-flex justify-content-between card-btn bg-white px-0 collapsed" href="javascript:;" role="button" id="acc400" onclick="toggleFaq(this);">
                   What is Wallet Limited?
 
                     <span class="card-btn-toggle">
-                      <span class="card-btn-toggle-default acc-plus" id="acc4-plus-sign">+</span>
-                      <span class="card-btn-toggle-default hide-me acc-minus" id="acc4-minus-sign">−</span>
+                      <span class="card-btn-toggle-default acc-plus" id="acc400-plus-sign">+</span>
+                      <span class="card-btn-toggle-default hide-me acc-minus" id="acc400-minus-sign">−</span>
                     </span>
                   </a>
                 </div>
 
-                <div class="collapse faq-body" id="acc4-faq-body">
+                <div class="collapse faq-body" id="acc400-faq-body">
                   <div class="card-body px-0">
                     <p>This is the money you have available for withdrawal in your QG-wallet. The money in your QG-Wallet has not been invested yet.</p>
                   </div>
@@ -384,7 +384,7 @@
                 </div>
                 <div id="acc10-faq-body" class="faq-body collapse">
                   <div class="card-body px-0">
-                        <p>For our FLEX plans, the minimum amount you can invest at a time is ₦10,000.</p>
+                        <p>For our FLEX plans, you can invest as low as ₦5000 depending on the flex plan you choose.</p>
                         <p>For our FIXED plans, the minimum amount you can invest at a time is ₦100,000.</p>
                   </div>
                 </div>
@@ -429,8 +429,8 @@
                           <li>Fixed Plans</li>
                         </ol>
 
-                        <p>Under the Flex Plans we have 2 different plans which are <strong>QG-X12</strong> and <strong>QG-X24</strong>.</p>
-                        <p>Under the Fixed plans we have 6 different plans which are <strong>QG-6</strong>, <strong>QG-12</strong>, <strong>QG-18</strong>, and <strong>QG-24</strong>.</p>
+                        <p>Under the Flex Plan we have 3 different plans which are <strong>FLEX-STUDENT,</strong><strong>FLEX-SALARY,</strong> and <strong>FLEX-BUSINESS.</strong>.</p>
+                        <p>Under the Fixed plans we have 2 different plans which are <strong>QG-12</strong> and <strong>QG-24</strong>.</p>
                   </div>
                 </div>
               </div>
@@ -550,10 +550,13 @@
                 </div>
                 <div class="faq-body collapse" id="acc18-faq-body">
                   <div class="card-body px-0">
-                        <p>For <strong>FLEX</strong> plans (QG-X12 and QG-X24), Yes! you can add more capital to your ongoing investment. And you can do that as many times as you like. The minimum capital you can add each time is 10,000 Naira.</p>
+                        <p>For <strong>FLEX Plans</strong>, Yes! <br> You can add more capital to your ongoing investment. 
+                          <br> Flex plans were created specifically to give you the freedom to keep adding more capital
+                          to an ongoing Flex investment plan.
+                          And you can do that as many times as you like.</p>
 
-                        <p>For <strong>FIXED</strong> Plans (QG-6, QG-12, QG-18, and QG-24), No! You cannot add capital to an ongoing investment.</p>
-                        <p>But you can choose to open a new investment plan.</p>
+                        <p>For <strong>FIXED Plans</strong> , No! <br>  You cannot add capital to an ongoing investment.
+                          <br>But you can choose to open a new Fixed investment plan.</p>
                   </div>
                 </div>
               </div>
@@ -581,7 +584,7 @@
           <!-- -->
 
           <!-- REFERRAL -->
-          <div id="referral" class="menu-content space-bottom-1">
+          {{-- <div id="referral" class="menu-content space-bottom-1">
             <h2>REFERRAL</h2>
 
             <div id="basicsAccordion">
@@ -709,7 +712,7 @@
             </div>
 
             
-          </div>
+          </div> --}}
           <!-- End -->
 
           <!-- WITHDRAWAL -->
@@ -739,17 +742,17 @@
 
               <div class="card shadow-none mb-3">
                 <div class="card-header card-collapse" id="basicsHeadingOne">
-                  <a class="btn btn-link btn-block d-flex justify-content-between card-btn bg-white px-0 collapsed" href="javascript:;" role="button" id="acc26" onclick="toggleFaq(this);">
+                  <a class="btn btn-link btn-block d-flex justify-content-between card-btn bg-white px-0 collapsed" href="javascript:;" role="button" id="acc260" onclick="toggleFaq(this);">
                   When will my interest from my investment be paid?
 
                     <span class="card-btn-toggle">
-                      <span class="card-btn-toggle-default acc-plus" id="acc26-plus-sign">+</span>
-                      <span class="card-btn-toggle-default hide-me acc-minus" id="acc26-minus-sign">−</span>
+                      <span class="card-btn-toggle-default acc-plus" id="acc260-plus-sign">+</span>
+                      <span class="card-btn-toggle-default hide-me acc-minus" id="acc260-minus-sign">−</span>
                     </span>
                   </a>
                 </div>
 
-                <div class="faq-body collapse" id="acc26-faq-body">
+                <div class="faq-body collapse" id="acc260-faq-body">
                   <div class="card-body px-0">
                   <p>The interest for any investment is paid at the end of the investment duration.</p>
                   <p>You will see the interest and invested capital reflect in your QG-Wallet immediately after the investment duration ends.</p>
@@ -1490,18 +1493,18 @@
 
               <div class="card shadow-none mb-3">
                 <div class="card-header card-collapse">
-                  <a class="btn btn-link btn-block d-flex justify-content-between card-btn bg-white px-0 collapsed" href="javascript:;" role="button" id="acc60" onclick="toggleFaq(this);">
+                  <a class="btn btn-link btn-block d-flex justify-content-between card-btn bg-white px-0 collapsed" href="javascript:;" role="button" id="acc600" onclick="toggleFaq(this);">
                   How do i start an investment plan?
 
 
                     <span class="card-btn-toggle">
-                      <span class="card-btn-toggle-default acc-plus" id="acc60-plus-sign">+</span>
-                      <span class="card-btn-toggle-default hide-me acc-minus" id="acc60-minus-sign">−</span>
+                      <span class="card-btn-toggle-default acc-plus" id="acc600-plus-sign">+</span>
+                      <span class="card-btn-toggle-default hide-me acc-minus" id="acc600-minus-sign">−</span>
                     </span>
                   </a>
                 </div>
 
-                <div class="faq-body collapse" id="acc60-faq-body">
+                <div class="faq-body collapse" id="acc600-faq-body">
                   <div class="card-body px-0">
 
                     <p><strong>First step:</strong> You fund your QG-Wallet and wait for the money to reflect in your QG-wallet.</p>

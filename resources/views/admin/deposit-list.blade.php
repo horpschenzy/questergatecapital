@@ -154,7 +154,7 @@
                                         <select name="user_id" id="user_id" class="bg-white text w-full focus:outline-none px-3 py-2 rounded text-gray-900 border focus:bg-white mt-2 border-gray-400" required>
                                             <option value="">Select User</option>
                                             @foreach ($users as $user)
-                                            <option value="{{ $user->id }}">{{ $user->firstname.' '.$user->lastname }}</option>
+                                            <option value="{{ $user->id }}">{{ $user->firstname.' '.$user->lastname .' ('.$user->user_id.')' }}</option>
                                             @endforeach
                                         </select>
                                     </div>

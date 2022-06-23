@@ -162,5 +162,7 @@ Route::prefix('admin')->group(function(){
 	Route::get('/audits/{type}', [AdminController::class, 'audit']);
 	Route::get('/notifications', [AdminController::class, 'notifications']);
 	Route::get('/plan-detail/{userid}/{id}', [InvestmentPlanController::class, 'adminViewPlan']);
+	Route::get('/subscribers', [SubscribeController::class, 'index']);
+	Route::get('/insert/subscribers', [SubscribeController::class, 'store']);
 	
 });

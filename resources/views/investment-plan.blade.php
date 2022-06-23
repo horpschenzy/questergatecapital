@@ -76,9 +76,9 @@
         <div class="col-lg-4" style="display: none;">
           <nav>
             <ul class="menu">
-              <li class="active" onclick="showFaqMenuContent(this, 'qg-6');"><a href="#">QG-6</a></li>
-              <li onclick="showFaqMenuContent(this, 'qg-12');"><a href="#">QG-12</a></li>
-              <li onclick="showFaqMenuContent(this, 'qg-18');"><a href="#">QG-18</a></li>
+              {{-- <li class="active" onclick="showFaqMenuContent(this, 'qg-6');"><a href="#">QG-6</a></li> --}}
+              <li class="active" onclick="showFaqMenuContent(this, 'qg-12');"><a href="#">QG-12</a></li>
+              {{-- <li onclick="showFaqMenuContent(this, 'qg-18');"><a href="#">QG-18</a></li> --}}
               <li onclick="showFaqMenuContent(this, 'qg-24');"><a href="#">QG-24</a></li>
             </ul>
           </nav>
@@ -362,7 +362,7 @@
           <!-- -->
 
           <!-- QG-6 -->
-          <div id="qg-6" style="display: none" class="menu-content">
+          {{-- <div id="qg-6" style="display: none" class="menu-content">
             <h2>QG-6</h2>
 
             <div>
@@ -398,7 +398,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> --}}
           <!-- -->
 
           <!-- QG-12 -->
@@ -449,7 +449,7 @@
           <!-- -->
 
           <!-- QG-18 -->
-          <div id="qg-18" style="display: none" class="menu-content">
+          {{-- <div id="qg-18" style="display: none" class="menu-content">
             <h2>QG-18</h2>
 
             <div>
@@ -489,7 +489,7 @@
                   </div>
               </div>
             </div>
-          </div>
+          </div> --}}
           <!-- -->
 
           <!-- QG-24 -->

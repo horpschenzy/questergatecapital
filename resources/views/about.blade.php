@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>About Us - QuesterGate Limited</title>
   <link rel="icon" href="/questergatecapital/public/img/favicon.png" type="image/png" sizes="16x16">
-
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
 
@@ -100,26 +100,27 @@ We don't just want you to invest, we want you to invest as a habit.</p>
           <h2 class="font-bold text-black text-2xl">Don't get left behind financially</h2>
       <span class="d-block small font-weight-bold text-cap mb-2">Learn simple livestyles tips that will help you stay ahead financilly in the present day economic realities.</span>
       <span class="d-block small font-weight-bold text-cap mb-2">Subscribe to our free monthly "wealth savy notes"</span>
-          <form action="/subscribe" method="POST" class="register-form">
-            @csrf
-            <div aria-required="true" aria-invalid="false">
-              <input style="width: 100%;" id="fullname" name="firstname" type="text" placeholder="First Name" class="bg-white text w-full focus:outline-none px-3 py-3 rounded text-gray-900 border focus:bg-white mt-3 border-gray-400">
-              <!---->
-            </div>
-        
-            <div aria-required="true" aria-invalid="false">
-              <div class="relative mt-3">
-                <input style="width: 100%;" id="email" name="email" type="text" placeholder="Email" class="bg-white text w-full focus:outline-none px-3 py-3 rounded text-gray-900 border focus:bg-white border-gray-400">
-              </div>
-            </div>
-            <div class="relative mt-3">
-              <button type="submit" style="width: 80%;" class="btn btn-sm btn-indigo u-btn-indigo transition-3d-hover" >
-                Subscribe
-              </button>
-            </div>
-              
-              <!---->
-          </form>
+      <div class="subscribe-response">
+
+      </div>
+      <form method="POST" class="subscriber-form">
+        <div aria-required="true" aria-invalid="false">
+          <input required style="width: 100%;" id="fullname" name="firstname" type="text" placeholder="First Name" class="bg-white text w-full focus:outline-none px-3 py-3 rounded text-gray-900 border focus:bg-white mt-3 border-gray-400">
+          <!---->
+        </div>
+    
+        <div aria-required="true" aria-invalid="false">
+          <div class="relative mt-3">
+            <input required style="width: 100%;" id="email" name="email" type="text" placeholder="Email" class="bg-white text w-full focus:outline-none px-3 py-3 rounded text-gray-900 border focus:bg-white border-gray-400">
+          </div>
+        </div>
+        <div class="relative mt-3">
+          <button type="button" style="width: 80%;" class="btn btn-sm btn-indigo u-btn-indigo transition-3d-hover" onclick="addSubcriber(this);">
+            Subscribe
+          </button>
+        </div>
+        <!---->
+      </form>
           <div class="row mt-10 text-black">
             <div class="font-bold text-center w-full p-3 text-xl">
               <i>"If you don't make investing a habit, you will never experience long lasting fiancial freedom." - QuesterGate</i>
