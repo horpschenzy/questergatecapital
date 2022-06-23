@@ -323,7 +323,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Card 4 -->
       <div class="col-lg-4 pt-7 pt-lg-0"  style="margin-top: 70px;">
         <div class="card mt-lg-n7 p-3 border btn-indigo">
-          <div style="color: #fff;">
+          <div style="color: #fff;" class="mb-4">
             <span class="d-block font-weight-bold text-cap mb-2" style="font-size: 1.5rem;">QG-12 <span class="font-bold" style="color: #3b8cb9">FIXED</span> PLAN</span>
             <p>Do you want to set aside money for a business or personal project and need a safe place to save and invest it? Then this plan is for you.</p>
             <p>Investment duration for this plan is 12 months.</p>
@@ -337,7 +337,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Card 5 -->
       <div class="col-lg-4 pt-7 pt-lg-0" style="margin-top: 70px;">
         <div class="card mt-lg-n7 p-3 border btn-indigo">
-          <div class="mb-4" style="color: #fff">
+          <div class="mb-0" style="color: #fff">
             <span class="d-block font-weight-bold text-cap mb-2" style="font-size: 1.5rem;">QG-24 <span class="font-bold" style="color: #3b8cb9">FIXED</span> PLAN</span>
             <p>Do you have a multi-year project planned with money set aside for it?
               You can use this plan to protect your money against inflation and also yield good returns from your money before the time of the project.</p>
