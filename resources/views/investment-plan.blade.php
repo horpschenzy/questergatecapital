@@ -109,11 +109,15 @@
 
           <div style="font-weight: bold; font-size: 25px; margin-bottom: 10px">FLEX PLANS</div>
           <div class="mb-3">
-            <button style="width: 100%" class="text-left btn btn-sm btn-indigo u-btn-indigo transition-3d-hover" onclick="showFaqMenuContent(this, 'qg-x12');">QG-X12</button>
+            <button style="width: 100%" class="text-left btn btn-sm btn-indigo u-btn-indigo transition-3d-hover" onclick="showFaqMenuContent(this, 'qg-x12');">FLEX-STUDENT</button>
           </div>
 
           <div class="mb-3">
-            <button style="width: 100%" class="text-left btn btn-sm btn-indigo u-btn-indigo transition-3d-hover" onclick="showFaqMenuContent(this, 'qg-x24');">QG-X24</button>
+            <button style="width: 100%" class="text-left btn btn-sm btn-indigo u-btn-indigo transition-3d-hover" onclick="showFaqMenuContent(this, 'qg-x24');">FLEX-SALARY</button>
+          </div>
+
+          <div class="mb-3">
+            <button style="width: 100%" class="text-left btn btn-sm btn-indigo u-btn-indigo transition-3d-hover" onclick="showFaqMenuContent(this, 'business');">FLEX-BUSINESS</button>
           </div>
           
           <div style="margin-bottom: 30px;">
@@ -144,24 +148,27 @@
           
           <!-- QG-X12 -->
           <div id="qg-x12" style="display: block" class="menu-content">
-            <h2>QG-X12</h2>
+            <h2>FLEX-STUDENT</h2>
 
             <div>
               <div class="card shadow-none mb-3">               
 
                 <div class="faq-body">
                   <div class="card-body px-0">
-                    <p>This plan is suitable for Students, Employees, and Small business Owners.</p>
-                    <p>The capital is invested in short term assets with high liquidity, low risk and moderate returns.</p>
+                    <p>This plan was created for Students (and Non Students) who want to save towards a personal goal and at same time develop a habit of safe investing.</p>
+                    <p>With this plan, you can save towards that personal goal by regularly setting aside a portion of your monthly income as investment.</p>
 
-                    <p style="font-weight: bold;">Unique features of this plan are:</p>
+                    {{-- <p style="font-weight: bold;">Unique features of this plan are:</p> --}}
 
                     <ul>
-                        <li>Minimum Capital required to activate this plan is ₦10,000.</li>
-                        <li>Investment duration for this plan is 12 months (30days per month) cycle. </li>
-                        <li>Freedom to keep adding money to your investment capital at any time until the 11th month of the plan.</li>
-                        <li>The Return on Investments <strong>(ROI) is 0.089% per day</strong>. That means capital added at the start of the investment plan will gain ROI of 32% in 12 months.</li>
-                        <li>You can terminate your QG-X12 plan at any time and take back your capital.</li>
+                        <li><strong>Minimum Capital to activate:</strong> ₦5,000 naira.</li>
+                        <li><strong>Investment Duration:</strong> Freedom to pick a duration that suits your personal goal.
+                          (Minimum duration is 5 months)</li>
+                        <li><strong>Continuous investing:</strong> Freedom to keep adding more capital to your investment plan anytime you want.</li>
+                        <li>Withdrawal: Freedom to withdraw as you want every 90days.</li>
+                        <li><strong>Termination Of Investment:</strong> You have the freedom to terminate your investment at any
+                          time and take your capital.</li>
+                        <li><strong>Return On Investment (ROI):</strong> Gain of 0.084% per day (that is minimum 15% in 6 months).</li>
                     </ul>
 
                     <div style="margin-bottom: 30px;"><a href="/faq"  alt="">visit our FAQ page for more information.</a></div>
@@ -191,24 +198,29 @@
 
           <!-- QG-X24 -->
           <div id="qg-x24" style="display: none" class="menu-content">
-            <h2>QG-X24</h2>
+            <h2>FLEX-SALARY</h2>
 
             <div>
               <div class="card shadow-none mb-3">               
 
                 <div class="faq-body">
                   <div class="card-body px-0">
-                    <p>This plan is suitable for Students, Employees, and Small business Owners.</p>
-                    <p>The capital is invested in assets with moderate liquidity, low risk, and moderate returns.</p>
+                    <p>
+                      This plan was created to help Salary Earners access safe investments and build wealth by having another stream of income..</p>
+                    <p>With this plan, as an Employee you can regularly set aside a portion of your salary to safely invest towards any personal goal you may have like buying a car, building a house, starting a business, retirement income or just earning more money from the return on your investments.
+                    </p>
 
-                    <p style="font-weight: bold;">Unique features of this plan are:</p>
+                    {{-- <p style="font-weight: bold;">Unique features of this plan are:</p> --}}
 
                     <ul>
-                        <li>Minimum Capital required to activate this plan is ₦10,000.</li>
-                        <li>Investment duration for this plan is 24 months (30days per month) cycle. </li>
-                        <li>Freedom to keep adding money to your investment capital at any time until the 23rd month of the plan.</li>
-                        <li>The Return on Investments <strong>(ROI) is 0.12% per day</strong>. That means capital added at the start of the investment plan will gain ROI of 86.4% in 12 months.</li>
-                        <li>You can terminate your QG-X12 plan at any time and take back your capital.</li>
+                        <li><strong>Minimum Capital to activate:</strong> ₦10,000.</li>
+                        <li><strong>Investment Duration:</strong> Freedom to pick a duration that suits your personal goal.
+                          (Minimum duration is 5 months) </li>
+                        <li><strong>Continuous investing:</strong> Freedom to keep adding more capital to your investment plan anytime you want.</li>
+                        <li><strong>Withdrawal:</strong> You have the freedom to withdraw as you want every 90days.</li>
+                        <li><strong>Termination Of Investment:</strong> You have the freedom to terminate your investment at any
+                          time and take your capital.</li>
+                        <li><strong>Return On Investment (ROI):</strong> Gain of 0.1% per day (that is ROI of 18% in 6 months).</li>
                     </ul>
 
                     <div style="margin-bottom: 30px;"><a href="/faq"  alt="">visit our FAQ page for more information.</a></div>
@@ -239,6 +251,57 @@
           </div>
           <!-- -->
          
+          <div id="business" style="display: none" class="menu-content">
+            <h2>FLEX-BUSINESS</h2>
+
+            <div>
+              <div class="card shadow-none mb-3">               
+
+                <div class="faq-body">
+                  <div class="card-body px-0">
+                    <p>This Is the plan for Business Owners who want to invest towards a personal/business goal while also earning more from another stream of income.</p>
+                    <p>With this plan, as Business Owner you can regularly set aside a portion of your business profit to safely invest towards expanding your business, starting a new business, taking a personal vacation or earning ROI as another stream of income.</p>
+
+                    {{-- <p style="font-weight: bold;">Unique features of this plan are:</p> --}}
+
+                    <ul>
+                        <li><strong>Minimum Capital to activate:</strong> ₦15,000.</li>
+                        <li><strong>Investment Duration:</strong> Freedom to pick a duration that suits your personal goal.
+                          (Minimum duration is 5months)</li>
+                        <li><strong>Continuous investing:</strong> Freedom to keep adding more capital to your investment plan anytime you want.</li>
+                        <li><strong>Withdrawal:</strong> You have the freedom to withdraw as you want every 90days.</li>
+                        <li><strong>Termination Of Investment:</strong> You have the freedom to terminate your investment at any
+                          time and take your capital.</li>
+                        <li><strong>Return On Investment (ROI):</strong> Gain of 0.12% per day (that is minimum ROI of 21% in 6 months).</li>
+                    </ul>
+
+                    <div style="margin-bottom: 30px;"><a href="/faq"  alt="">visit our FAQ page for more information.</a></div>
+
+                    <p style="font-weight: bold;">How it works:</p>
+
+                    <ol>
+                       <li>After you create an investment plan. The Investment plan has an <strong> END DATE </strong>. 
+                          (The End Date is when your "Total Capital + Total ROI" will be paid to your account)</li>
+
+
+                        <li>You can add more money to your investment capital whenever you choose.
+                          Every amount you add to the investment plan will make a particular ROI by the End Date depending on when you added it.</li>
+
+                        <li>At the <strong> END DATE </strong> of the investment plan, your "Total Capital and Total ROI" is paid into your account.</li>
+
+                    </ol>
+
+                    <div>Use the investment Calculator below for more details.</div>
+
+                    {{-- <div>The capital is invested in assets with moderate liquidity, low risk, and moderate returns.
+                    </div> --}}
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <!-- Flex-calculator -->
           <div id="flex-calculator" style="display: none" class="menu-content">
             <h2>Flex Calculator</h2>
