@@ -145,6 +145,10 @@
                                     <th class="px-6 py-3">Amount Added (₦)</th> 
                                     <th class="px-6 py-3">Days to End date</th> 
                                     <th class="px-6 py-3">ROI at End date (₦)</th>
+                                    <th class="px-6 py-3">Amount Withdrawn (₦)</th>
+                                    @if ($canWithdraw)
+                                    <th class="px-6 py-3">Action</th>
+                                    @endif
                                 </tr> 
                                 @php
                                     $capital = 0;
@@ -155,7 +159,11 @@
                                         $capital += $detail->capital;
                                         $roi_earned += $detail->roi_earned;
                                     @endphp
+                                    @if ($detail->capital)
                                     <tr class="focus-within:bg-gray-100 tr-data"> 
+                                    @else
+                                    <tr class="focus-within:bg-gray-100 tr-data" style="text-decoration: line-through"> 
+                                    @endif
                                         <td class="border-t">
                                             <span tabindex="-1" class="px-6 py-4 flex focus:outline-none">{{$key + 1}}</span>
                                         </td>
@@ -179,6 +187,15 @@
                                         <td class="border-t">
                                             <span tabindex="-1" class=" px-6 py-4 flex focus:outline-none">{{ number_format($detail->roi_earned) }}</span>
                                         </td>
+                                        <td class="border-t">
+                                            <span tabindex="-1" class=" px-6 py-4 flex focus:outline-none">{{ number_format($detail->amount_withdrawn) }}</span>
+                                        </td>
+                                        @if ($canWithdraw)
+                                            
+                                        <td class="border-t">
+                                                <button type="button" class="ml-3 bg-lime-100 text-white font-semibold hover:text-white py-2 px-4 border border-lime-100 hover:border-transparent rounded" onclick="withdrawFlexFundPrompt('<?= $detail->id?>');"><span>Withdraw</span></button>                                                             
+                                        </td>
+                                        @endif
 
                                         
                                     </tr>
@@ -200,11 +217,15 @@
 
                                     <td class="border-t">
                                     </td>
+                                    
 
                                     <td class="border-t">
                                         <span tabindex="-1" class="px-6 py-4 flex focus:outline-none"><strong>TOTAL ROI = ₦<?= number_format($roi_earned); ?></strong></span>
                                     </td>
-
+                                    <td class="border-t">
+                                    </td>
+                                    <td class="border-t">
+                                    </td>
                                     
                                 </tr>
                             </table>
@@ -340,6 +361,80 @@
                 </div>
             @endif
 
+            <!-- withdraw confirm -->
+            <div class="withdraw-flex-fund-modal" style="display: none">
+                <div class="fixed inset-0 z-40 flex items-center justify-center overflow-y-auto max-h-full py-8">
+                    <div>
+                        <div class="absolute inset-0 bg-black opacity-25"></div>
+                    </div> 
+
+                    <div class="relative max-h-full overflow-y-auto w-full md:w-128">
+                        <div class="w-full md:w-128 bg-white rounded-lg shadow-2xl px-6 py-6">   
+                            
+                                <div class="withdrawal-flex-response"></div>
+                                 
+                                <form method="POST" id="withdraw-flex-form">
+                                    <input name="plan_id" type="hidden" value="{{$plans['id']}}" />
+
+                                    <div class="wdisplay-flex-success bg-green-100 p-3 text-green-600" style="display: none;">
+                                        <strong class="text-sm">Withdrawal created successfully</strong>
+                                    </div>                    
+
+                                    <h4 class="font-semibold text-gray-800 text-lg leading-tight border-b-2 border-gray-200 pb-4 mt-5">
+                                        <span>Withdraw Funds To QG Wallet</span>
+                                        <button type="button" class="block text-gray-600 hover:text-gray-800 float-right" onclick="closeModal('.withdraw-flex-fund-modal');">
+                                            <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4">
+                                                <path d="M17.293 18.707a1 1 0 001.414-1.414L13.414 12l5.293-5.293a1 1 0 00-1.414-1.414L12 10.586 6.707 5.293a1 1 0 00-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 101.414 1.414L12 13.414l5.293 5.293z"></path>
+                                            </svg>
+                                        </button>
+                                    </h4>
+
+                                    @if(!$hasInvestmentPlanEnded)
+                                    <div class="mt-2 rounded-md bg-blue-50 p-4 text-blue-700 text-sm ">
+                                        <p>Any withdrawal made before your investment end date will attract a penalty fee.</p>
+                                        <p class="mt-3">The penalty fee is 20% of the amount you withdraw.</p> 
+                                        <p class="mt-3">To learn more about <strong> Withdrawal Penalty</strong> fee, <a href="/faq" class="view-more" target="_blank"><strong>click here</strong></a>
+                                        </p> 
+                                    </div>
+                                    @else
+                                    <div class="mt-2 rounded-md bg-blue-50 p-4 text-blue-700 text-sm ">
+                                        <p><strong>Congratulations!</strong> This investment plan has matured. Click the <strong>Withdraw</strong> button below to move the <strong>Total Returns (Capital + Profit)</strong> to your <strong>QGWallet</strong>.</p>
+                                    </div>
+                                    @endif
+
+                                    @if(!$hasInvestmentPlanEnded)
+                                    <div class="flex flex-wrap -mx-3 mt-2">
+                                        <div class="w-full md:w-full px-3">
+                                            <div aria-required="true" aria-invalid="true">
+                                                <label class="text-gray-700 block mt-2"><strong>Amount to withdraw</strong> <small></small></label> 
+                                                <input id="amnt" name="amount" type="number" class="bg-white text w-full focus:outline-none px-3 py-3 rounded text-gray-900 border focus:bg-white mt-2 border-gray-400" onkeyup="amountToBePaid()"> 
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    <div class="flex flex-wrap -mx-3 mt-2">
+                                        <div class="w-full md:w-full px-3">
+                                            <div aria-required="true" aria-invalid="true">
+                                                <label class="text-gray-700 block mt-2"><strong>Amount to be paid</strong> <small></small></label> 
+                                                <input readonly name="amount_paid" id="amount_paid" type="number" class="bg-white text w-full focus:outline-none px-3 py-3 rounded text-gray-900 border focus:bg-white mt-2 border-gray-400"> 
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    @endif
+                                    
+                                     
+                                    <div class="w-full">
+                                        <button type="button" class="focus:outline-none focus:shadow-outline w-full md:flex-1 bg-lime-100 hover:bg-lime-100 px-4 py-3 text-white rounded border-b-2 font-semibold mt-4" onclick="withdrawFlexCapital(this);">
+                                            Withdraw
+                                        </button>
+                                    </div>
+                                </form>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end -->
+            
             <!-- withdraw confirm -->
             <div class="withdraw-fund-modal" style="display: none">
                 <div class="fixed inset-0 z-40 flex items-center justify-center overflow-y-auto max-h-full py-8">
@@ -589,5 +684,6 @@
         </div>
 
         <input type="hidden" id="plan-hidden-id">
+        <input type="hidden" id="plan-detail-hidden-id">
     </body>
 </html>

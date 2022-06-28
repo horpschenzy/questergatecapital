@@ -881,6 +881,11 @@ function searchAllDeposit(){
     }
 }
 
+function withdrawFlexFundPrompt(id){
+    $("#plan-detail-hidden-id").val(id);
+    $(".withdraw-flex-fund-modal").show();
+}
+
 function withdrawFundPrompt(){
     $(".withdraw-fund-modal").show();
 }
@@ -1178,11 +1183,31 @@ function showResourceMenuContent(e, content){
     elmnt.scrollIntoView();
 }
 
-function addAmountToFlex(type) {
+function addAmountToFlex(duration) {
     let flex_added_amount = parseFloat($("#flex_added_amount").val());
-    if(flex_added_amount < 1000 || flex_added_amount == '' || isNaN(flex_added_amount)){
-        alert('Minimum Capital to add is ₦1,000');
+    var storedData = JSON.parse(localStorage.getItem("storedData"));
+    let type = storedData[0][4];
+    if(type == 'STUDENT' &&(flex_added_amount < 5000 || flex_added_amount == '' || isNaN(flex_added_amount))){
+        alert('Minimum Capital required to activate this plan is ₦5,000');
         return false;
+    }
+    else if(type == 'SALARY' &&(flex_added_amount < 10000 || flex_added_amount == '' || isNaN(flex_added_amount))){
+        alert('Minimum Capital required to activate this plan is ₦10,000');
+        return false;
+    }
+    else if(type == 'BUSINESS' &&(flex_added_amount < 15000 || flex_added_amount == '' || isNaN(flex_added_amount))){
+        alert('Minimum Capital required to activate this plan is ₦15,000');
+        return false;
+    }
+   let roiPercent = 0;
+    if(type == 'STUDENT'){
+        roiPercent =  0.084;
+    }
+    else if(type == 'SALARY'){
+        roiPercent =  0.1;
+    }
+    else if(type == 'BUSINESS'){
+        roiPercent =  0.12;
     }
     let flex_selected_day = parseFloat($("#flex_selected_day").val());
     if(!flex_selected_day || flex_selected_day == ''){
@@ -1190,17 +1215,8 @@ function addAmountToFlex(type) {
         return false;
     }
     
-    let roi_per_day = 0;
-    let days = 0;
-    if(type == 12){
-        roi_per_day = 0.089;
-        days = 360;
-    }
-
-    if(type == 24){
-        roi_per_day = 0.12;
-        days = 720;
-    }
+    let roi_per_day = roiPercent;
+    let days = duration;
 
     let days_remaining = (days - flex_selected_day);
     let roi = (roi_per_day * days_remaining).toFixed(2);
@@ -1237,31 +1253,51 @@ function addAmountToFlex(type) {
 }
 
 function calculateFlexInvestment(){
-
     let invFlexCapital = parseFloat($("#invFlexCapital").val());
+    let invFlexPlan = $("#invFlexPlan").val();
     let invFlexDuration = $("#invFlexDuration").val();
-    if(invFlexCapital < 10000 || invFlexCapital == '' || isNaN(invFlexCapital)){
+    if(invFlexPlan == 'STUDENT' &&(invFlexCapital < 5000 || invFlexCapital == '' || isNaN(invFlexCapital))){
+        alert('Minimum Capital required to activate this plan is ₦5,000');
+        return false;
+    }
+    else if(invFlexPlan == 'SALARY' &&(invFlexCapital < 10000 || invFlexCapital == '' || isNaN(invFlexCapital))){
         alert('Minimum Capital required to activate this plan is ₦10,000');
         return false;
     }
-
-    if(invFlexDuration == "24"){
+    else if(invFlexPlan == 'BUSINESS' &&(invFlexCapital < 15000 || invFlexCapital == '' || isNaN(invFlexCapital))){
+        alert('Minimum Capital required to activate this plan is ₦15,000');
+        return false;
+    }
+   let duration = invFlexDuration * 30;
+   let roiPercent = 0;
+    if(invFlexPlan == 'STUDENT'){
+        roiPercent =  0.084;
+    }
+    else if(invFlexPlan == 'SALARY'){
+        roiPercent =  0.1;
+    }
+    else if(invFlexPlan == 'BUSINESS'){
+        roiPercent =  0.12;
+    }
+    // alert(duration);
+    // return false;
+    // if(invFlexDuration == "24"){
 
         let today_date = moment().format('YYYY-MM-DD');
-        let date_calc = moment().add(720, 'days').calendar()
+        let date_calc = moment().add(duration, 'days').calendar()
         let end_date = moment(date_calc,'MM/DD/YYYY').format('YYYY-MM-DD');
 
-        $("#flex_duration").html(720+' days');
+        $("#flex_duration").html(duration+' days');
         $("#flex_start_date").html(today_date);
         $("#flex_end_date").html(end_date);
-        $("#flex_roi_per_day").html('0.12%');
+        $("#flex_roi_per_day").html(roiPercent +'%');
 
-        let days_remaining = '720 days';
-        let roi = (0.12 * 720).toFixed(2);
+        let days_remaining = duration +' days';
+        let roi = (roiPercent * duration).toFixed(2);
         let roi_earned = (invFlexCapital * (roi / 100)).toFixed(2);
         let myArray = []
         myArray = [
-            [invFlexCapital, days_remaining, roi, roi_earned]
+            [invFlexCapital, days_remaining, roi, roi_earned,invFlexPlan]
          ];
 
         localStorage.setItem("storedData", JSON.stringify(myArray));
@@ -1293,72 +1329,72 @@ function calculateFlexInvestment(){
         $("#flex_total_capital_and_roi").html(flex_total_capital_and_roi_tag);
 
         let selected_tag = '<label for="flex_selected_day"  style=" color: white !important">Day Added</label><select class="px-1 py-1 rounded text-gray-900 border bg-white mt-2 border-gray-400" style="width: 100%; font-weight: bold" id="flex_selected_day"><option value="">Select Day</option>';
-        for (var i = 0; i < 690; i++) {
+        for (var i = 0; i < (duration - 30); i++) {
             selected_tag += '<option value='+i+'> Day' + (i+1) +'</option>';
         }
             selected_tag += '</select>';
         $("#flex_day_added").html(selected_tag);
+        let add_amount_button = '<button type="button" class="bg-indigo px-4 py-3 border text-white md:flex-1 rounded font-semibold mt-4 opacity-75 border-gray-400" style="width: 100%; font-weight: bold" onclick="addAmountToFlex('+duration+')"><span>ADD</span></button>';
         
-        let add_amount_button = '<button type="button" class="bg-indigo px-4 py-3 border text-white md:flex-1 rounded font-semibold mt-4 opacity-75 border-gray-400" style="width: 100%; font-weight: bold" onclick="addAmountToFlex(24)"><span>ADD</span></button>';
         $("#add_amount_to_flex_button").html(add_amount_button);
-    }
-    if(invFlexDuration == "12"){
+    // }
+    // if(invFlexDuration == "12"){
 
-        let today_date = moment().format('YYYY-MM-DD');
-        let date_calc = moment().add(360, 'days').calendar()
-        let end_date = moment(date_calc,'MM/DD/YYYY').format('YYYY-MM-DD');
+    //     let today_date = moment().format('YYYY-MM-DD');
+    //     let date_calc = moment().add(360, 'days').calendar()
+    //     let end_date = moment(date_calc,'MM/DD/YYYY').format('YYYY-MM-DD');
 
-        $("#flex_duration").html(360+' days');
-        $("#flex_start_date").html(today_date);
-        $("#flex_end_date").html(end_date);
-        $("#flex_roi_per_day").html('0.089%');
+    //     $("#flex_duration").html(360+' days');
+    //     $("#flex_start_date").html(today_date);
+    //     $("#flex_end_date").html(end_date);
+    //     $("#flex_roi_per_day").html('0.089%');
 
-        let days_remaining = '360 days';
-        let roi = (0.089 * 360).toFixed(2);
-        let roi_earned = (invFlexCapital * (roi / 100)).toFixed(2);
-        let myArray = []
-        myArray = [
-            [invFlexCapital, days_remaining, roi, roi_earned]
-         ];
+    //     let days_remaining = '360 days';
+    //     let roi = (0.089 * 360).toFixed(2);
+    //     let roi_earned = (invFlexCapital * (roi / 100)).toFixed(2);
+    //     let myArray = []
+    //     myArray = [
+    //         [invFlexCapital, days_remaining, roi, roi_earned]
+    //      ];
 
-        localStorage.setItem("storedData", JSON.stringify(myArray));
-        var storedData = JSON.parse(localStorage.getItem("storedData"));
+    //     localStorage.setItem("storedData", JSON.stringify(myArray));
+    //     var storedData = JSON.parse(localStorage.getItem("storedData"));
 
-        let html = '<table class="table table-responsive" style="font-size: 12px !important; color: white; padding-right: -1.5rem !important; padding-left: -1.5rem !important; ">'
-            html +=   '<thead>'
-            html +=      '<th width="10%">Capital (₦)</th>'
-            html +=      '<th width="40%">NO. of days remaining in plan</th>'
-            html +=      '<th width="10%">ROI(%)</th>'
-            html +=      '<th width="40%">ROI earned at end of plan (₦)</th>'
-            html +=   '</thead><tbody>'
-        let flex_total_capital_and_roi = '';
-        for (const value of storedData) {
-            html += '<tr>'
-            html += '<td width="10%">'+new Intl.NumberFormat({ style: 'currency', currency: 'NGN' }).format(value[0])+'</td>';
-            html += '<td width="40%">'+value[1]+'</td>';
-            html += '<td width="10%">'+value[2]+'</td>';
-            html += '<td width="40%">'+new Intl.NumberFormat({ style: 'currency', currency: 'NGN' }).format(value[3])+'</td>';
-            html += '</tr>'
-            flex_total_capital_and_roi += new Intl.NumberFormat({ style: 'currency', currency: 'NGN' }).format(parseFloat(value[0]) + parseFloat(value[3]));
-        }
+    //     let html = '<table class="table table-responsive" style="font-size: 12px !important; color: white; padding-right: -1.5rem !important; padding-left: -1.5rem !important; ">'
+    //         html +=   '<thead>'
+    //         html +=      '<th width="10%">Capital (₦)</th>'
+    //         html +=      '<th width="40%">NO. of days remaining in plan</th>'
+    //         html +=      '<th width="10%">ROI(%)</th>'
+    //         html +=      '<th width="40%">ROI earned at end of plan (₦)</th>'
+    //         html +=   '</thead><tbody>'
+    //     let flex_total_capital_and_roi = '';
+    //     for (const value of storedData) {
+    //         html += '<tr>'
+    //         html += '<td width="10%">'+new Intl.NumberFormat({ style: 'currency', currency: 'NGN' }).format(value[0])+'</td>';
+    //         html += '<td width="40%">'+value[1]+'</td>';
+    //         html += '<td width="10%">'+value[2]+'</td>';
+    //         html += '<td width="40%">'+new Intl.NumberFormat({ style: 'currency', currency: 'NGN' }).format(value[3])+'</td>';
+    //         html += '</tr>'
+    //         flex_total_capital_and_roi += new Intl.NumberFormat({ style: 'currency', currency: 'NGN' }).format(parseFloat(value[0]) + parseFloat(value[3]));
+    //     }
             
-            html +=   '</tbody><table>'
-        $("#table").html(html);
+    //         html +=   '</tbody><table>'
+    //     $("#table").html(html);
 
-        let flex_total_capital_and_roi_tag = '<div class="square-block ovw-bg-2 text-white" style="display:inline-block"></div><div class="text-white" style="display:inline-block">Total Capital + ROI</div>';
-            flex_total_capital_and_roi_tag += '<div class="bold text-white" id="min_flex_percent_and_amount" style="display:inline-block; float:right">₦'+flex_total_capital_and_roi+'</div>'
-        $("#flex_total_capital_and_roi").html(flex_total_capital_and_roi_tag);
+    //     let flex_total_capital_and_roi_tag = '<div class="square-block ovw-bg-2 text-white" style="display:inline-block"></div><div class="text-white" style="display:inline-block">Total Capital + ROI</div>';
+    //         flex_total_capital_and_roi_tag += '<div class="bold text-white" id="min_flex_percent_and_amount" style="display:inline-block; float:right">₦'+flex_total_capital_and_roi+'</div>'
+    //     $("#flex_total_capital_and_roi").html(flex_total_capital_and_roi_tag);
 
-        let selected_tag = '<label for="flex_selected_day"  style=" color: white !important">Day Added</label><select class="px-1 py-1 rounded text-gray-900 border bg-white mt-2 border-gray-400" style="width: 100%; font-weight: bold" id="flex_selected_day"><option value="">Select Day</option>';
-        for (var i = 0; i < 330; i++) {
-            selected_tag += '<option value='+i+'> Day ' + (i+1) +'</option>';
-        }   
-            selected_tag += '</select>';
-        $("#flex_day_added").html(selected_tag);
+    //     let selected_tag = '<label for="flex_selected_day"  style=" color: white !important">Day Added</label><select class="px-1 py-1 rounded text-gray-900 border bg-white mt-2 border-gray-400" style="width: 100%; font-weight: bold" id="flex_selected_day"><option value="">Select Day</option>';
+    //     for (var i = 0; i < 330; i++) {
+    //         selected_tag += '<option value='+i+'> Day ' + (i+1) +'</option>';
+    //     }   
+    //         selected_tag += '</select>';
+    //     $("#flex_day_added").html(selected_tag);
         
-        let add_amount_button = '<button type="button" class="bg-indigo border px-4 py-3 text-white md:flex-1 rounded font-semibold mt-4 opacity-75 border-gray-400" style="width: 100%; font-weight: bold" onclick="addAmountToFlex(12)"><span>ADD</span></button>';
-        $("#add_amount_to_flex_button").html(add_amount_button);
-    }
+    //     let add_amount_button = '<button type="button" class="bg-indigo border px-4 py-3 text-white md:flex-1 rounded font-semibold mt-4 opacity-75 border-gray-400" style="width: 100%; font-weight: bold" onclick="addAmountToFlex(12)"><span>ADD</span></button>';
+    //     $("#add_amount_to_flex_button").html(add_amount_button);
+    // }
 }
 
 function calculateInvestment(){
@@ -1833,6 +1869,44 @@ function deactivatePlan(e){
           $(".display-success").hide();
           $(".display-error").show();
         }
+    });
+
+    ajaxPost.fail(function(err){
+      console.log(err);
+    });
+}
+
+function amountToBePaid(){
+    let amnt = document.getElementById("amnt").value;
+    let amount = ((20 / 100) * amnt).toFixed();
+    document.getElementById("amount_paid").value = amnt - amount;
+}
+
+function withdrawFlexCapital(e){
+    $(e).html("Processing...");
+    let planDetailId = $("#plan-detail-hidden-id").val();
+    var ajaxPost = $.ajax({
+       type:'POST',
+       url:_protocol+""+_shost+"/investor/withdrawal/flex/plan/"+planDetailId,
+       data:$("#withdraw-flex-form").serialize(),
+       dataType: "json",
+      headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+    });
+
+    ajaxPost.done(function(res){
+      $(e).html("Withdraw");
+      if(res.message == "success"){
+        $(".withdrawal-flex-response").html('<div class="alert alert-success"><h3><strong>Withdrawal request sent!</strong></h3><p>Your request will be processed within 24 hours</p></div>');
+        $(e).html("Withdraw");
+
+        setTimeout(function(){
+            window.location.reload();
+        },2000);
+    }
+    else{
+        $(".withdrawal-flex-response").html('<div class="alert alert-error"><h3><strong>'+res.message+'</strong></h3></div>');
+         $(e).html("Withdraw");
+    }
     });
 
     ajaxPost.fail(function(err){

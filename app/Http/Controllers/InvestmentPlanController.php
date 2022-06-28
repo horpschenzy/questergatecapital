@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Referral;
 use App\Models\QGWallets;
+use App\Models\Withdrawal;
 use Illuminate\Http\Request;
 use App\Models\InvestmentPlan;
 use App\Http\Traits\HelperTrait;
@@ -123,11 +124,24 @@ class InvestmentPlanController extends Controller
 
     	$plans = InvestmentPlan::where('id', $request->id)->first();
         $tqgwallet = User::find(Auth::user()->id)->qgwallet()->sum('amount');
+        $canWithdraw = true;
         if($plans->inv_type == 'flex'){
             $pd = InvestmentPlan::with('details')->where('id', $request->id)->first();
             $todayDate = Carbon::now()->addDays(30);
             $investmentEndDate = $pd->inv_end;
             $hasInvestmentPlanEnded = $todayDate->greaterThanOrEqualTo($investmentEndDate);
+            $lastWithdrawal = Withdrawal::where('user_id', auth()->id())->orderBy('created_at', 'desc')->first();
+            $dateToday = date('Y-m-d');
+            $lastWithdrawalDate = date('Y-m-d', strtotime($lastWithdrawal->created_at));
+            if ($pd->withdrawal_date) {
+                if ($dateToday <= $lastWithdrawalDate){
+                    $canWithdraw = true;
+                }else{
+                    $canWithdraw = $this->checkWithdrawalDay($pd->withdrawal_date);
+                }
+            }else{
+                $canWithdraw = $this->checkWithdrawalDay($plan->created_at);
+            }
         }
         else{
 
@@ -165,8 +179,7 @@ class InvestmentPlanController extends Controller
             ];
         }
 
-
-    	return view('investor.plan-detail',['user'=>Auth::user(),'plans'=>$pd,'fInitial'=>$this->fInitial,'tqgwallet'=>number_format($tqgwallet,2),'walletBalance'=> $tqgwallet, 'hasInvestmentPlanEnded'=>$hasInvestmentPlanEnded]);
+    	return view('investor.plan-detail',['user'=>Auth::user(),'plans'=>$pd,'fInitial'=>$this->fInitial,'tqgwallet'=>number_format($tqgwallet,2),'walletBalance'=> $tqgwallet, 'hasInvestmentPlanEnded'=>$hasInvestmentPlanEnded, 'canWithdraw' => $canWithdraw]);
     }
 
     public function addAmountToFlexPlan(Request $request){
@@ -177,48 +190,63 @@ class InvestmentPlanController extends Controller
                     'message'=>"Maximum of ₦25,000,000 is required.",
                 ]);
             }
-            if($request->capital >= 10000){
-                $investment = InvestmentPlan::find($request->investment_id);
-                $start_date = Carbon::parse($investment->inv_start);
-                $now = Carbon::now();
-                $selected_day = $now->diffInDays($start_date);
-                if($selected_day >= ($investment->duration - 30)){
-                    return response()->json([
-                        'message'=>"Capital can't be added at this time.",
-                    ]);
-                }
-                $days_remaining =  $investment->duration - $selected_day;
-                $roi_per_day = round($investment->total_roi * $days_remaining,2);
-                $roi_earned = round($request->capital * ($roi_per_day / 100), 2);
-
-
-                
-                InvestmentPlanDetail::create([
-                    'capital'=>$request->capital,
-                    'investment_plan_id'=>$investment->id,
-                    'days_remaining'=> $days_remaining,
-                    'days_added'=> $selected_day,
-                    'roi'=> $roi_per_day,
-                    'roi_earned'=> $roi_earned
-                ]);
-                QGWallets::create([
-                    'amount'=> -$request->capital,
-                    'status'=>1,
-                    'user_id'=> Auth::id()
-                ]);
-
-                $comment = 'N'.number_format($request->capital, 2).' was added to a flex plan by '.Auth::user()->firstname.' '.Auth::user()->lastname .' with reference number '.$investment->reference;
-                $this->saveNotification(Auth::user()->id, 'Flex Investment Capital Topup  Notification', $comment, 'investment');
+            // if($request->capital >= 10000){
+            $investment = InvestmentPlan::find($request->investment_id);
+            if($request->capital < 5000 && $investment->plan == 'STUDENT'){
                 return response()->json([
-                    'message'=>'success',
-                    'status'=>200
+                    'message'=>"Minimum of ₦5,000 is required for this plan. <br> Kindly fund your QG Wallet and try again.",
                 ]);
             }
-            else{
+            elseif($request->capital < 10000 && $investment->plan == 'SALARY'){
                 return response()->json([
-                    'message'=>"Minimum of ₦10,000 is required. <br> Kindly fund your QG Wallet and try again.",
+                    'message'=>"Minimum of ₦10,000 is required for this plan. <br> Kindly fund your QG Wallet and try again.",
                 ]);
-            }        
+            }
+            elseif($request->capital < 15000 && $investment->plan == 'BUSINESS'){
+                return response()->json([
+                    'message'=>"Minimum of ₦15,000 is required for this plan. <br> Kindly fund your QG Wallet and try again.",
+                ]);
+            }
+            $start_date = Carbon::parse($investment->inv_start);
+            $now = Carbon::now();
+            $selected_day = $now->diffInDays($start_date);
+            if($selected_day >= ($investment->duration - 30)){
+                return response()->json([
+                    'message'=>"Capital can't be added at this time.",
+                ]);
+            }
+            $days_remaining =  $investment->duration - $selected_day;
+            $roi_per_day = round($investment->total_roi * $days_remaining,2);
+            $roi_earned = round($request->capital * ($roi_per_day / 100), 2);
+
+
+            
+            InvestmentPlanDetail::create([
+                'capital'=>$request->capital,
+                'investment_plan_id'=>$investment->id,
+                'days_remaining'=> $days_remaining,
+                'days_added'=> $selected_day,
+                'roi'=> $roi_per_day,
+                'roi_earned'=> $roi_earned
+            ]);
+            QGWallets::create([
+                'amount'=> -$request->capital,
+                'status'=>1,
+                'user_id'=> Auth::id()
+            ]);
+
+            $comment = 'N'.number_format($request->capital, 2).' was added to a flex plan by '.Auth::user()->firstname.' '.Auth::user()->lastname .' with reference number '.$investment->reference;
+            $this->saveNotification(Auth::user()->id, 'Flex Investment Capital Topup  Notification', $comment, 'investment');
+            return response()->json([
+                'message'=>'success',
+                'status'=>200
+            ]);
+            // }
+            // else{
+            //     return response()->json([
+            //         'message'=>"Minimum of ₦10,000 is required. <br> Kindly fund your QG Wallet and try again.",
+            //     ]);
+            // }        
         }
         else{
             return response()->json([
@@ -228,66 +256,62 @@ class InvestmentPlanController extends Controller
     }
     
     public function createFlex(Request $request){
-        $tqgwallet = User::find(Auth::user()->id)->qgwallet()->sum('amount');
-        // if($tqgwallet >= $request->capital){
-            if($request->capital > 25000000){
-                return response()->json([
-                    'message'=>"Maximum of ₦25,000,000 is required.",
-                ]);
-            }
-            if($request->capital >= 10000){
-                $pl = explode(':', $request->plan);
-                $plan = $pl[0];
-                $days = $pl[1];
-                $roi_per_day = round($pl[2] * $days,2);
-                $roi_earned = round($request->capital * ($roi_per_day / 100), 2);
-                $start_date = Carbon::now();
-                $end_date = Carbon::now()->addDays($days);
-                $reference = strtoupper($this->generateRandomString());
-                $id = isset($request->user_id) ? $request->user_id : Auth::user()->id;
-                $investment = InvestmentPlan::create([
-                    'is_active'=> 0,
-                    'capital'=>$request->capital,
-                    'plan'=> $pl[0],
-                    'total_roi'=>$pl[2],
-                    'duration'=>$pl[1],
-                    'inv_type'=> 'flex',
-                    'inv_start'=> $start_date,
-                    'inv_end'=> $end_date,
-                    'user_id'=> $id,
-                    'reference'=> $reference
-                ]);
-                // InvestmentPlanDetail::create([
-                //     'capital'=>$request->capital,
-                //     'investment_plan_id'=>$investment->id,
-                //     'days_remaining'=> $days,
-                //     'days_added'=>'0',
-                //     'roi'=> $roi_per_day,
-                //     'roi_earned'=> $roi_earned
-                // ]);
-                // QGWallets::create([
-                //     'amount'=> -$request->capital,
-                //     'status'=>1,
-                //     'user_id'=> Auth::id()
-                // ]);
-                $comment = 'A '.$pl[1].' days Flex Investment with '.$pl[2].'% ROI and a capital of N'.number_format($request->capital, 2).' was created by '.Auth::user()->firstname.' '.Auth::user()->lastname .' with reference number '.$reference;
-                $this->saveNotification(Auth::user()->id, 'Investment Creation Notification', $comment, 'investment');
-                return response()->json([
-                    'message'=>'success',
-                    'status'=>200
-                ]);
-            }
-            else{
-                return response()->json([
-                    'message'=>"Minimum of ₦10,000 is required. <br> Kindly fund your QG Wallet and try again.",
-                ]);
-            }        
-        // }
-        // else{
-        //     return response()->json([
-        //         'message'=>"Minimum of ₦10,000 is required. <br> Kindly fund your QG Wallet and try again.",
-        //     ]);
-        // }        
+        if($request->capital > 25000000){
+            return response()->json([
+                'message'=>"Maximum of ₦25,000,000 is required.",
+            ]);
+        }
+        if($request->capital < 5000 && $request->plan == 'STUDENT'){
+            return response()->json([
+                'message'=>"Minimum of ₦5,000 is required for this plan. <br> Kindly fund your QG Wallet and try again.",
+            ]);
+        }
+        elseif($request->capital < 10000 && $request->plan == 'SALARY'){
+            return response()->json([
+                'message'=>"Minimum of ₦10,000 is required for this plan. <br> Kindly fund your QG Wallet and try again.",
+            ]);
+        }
+        elseif($request->capital < 15000 && $request->plan == 'BUSINESS'){
+            return response()->json([
+                'message'=>"Minimum of ₦15,000 is required for this plan. <br> Kindly fund your QG Wallet and try again.",
+            ]);
+        }
+        $roiPercent = 0;
+        if($request->plan == 'STUDENT'){
+            $roiPercent =  0.084;
+        }
+        else if($request->plan == 'SALARY'){
+            $roiPercent =  0.1;
+        }
+        else if($request->plan == 'BUSINESS'){
+            $roiPercent =  0.12;
+        }
+        $plan =$request->plan;
+        $days = $request->duration * 30;
+        $roi_per_day = round($roiPercent * $days,2);
+        $roi_earned = round($request->capital * ($roi_per_day / 100), 2);
+        $start_date = Carbon::now();
+        $end_date = Carbon::now()->addDays($days);
+        $reference = strtoupper($this->generateRandomString());
+        $id = isset($request->user_id) ? $request->user_id : Auth::user()->id;
+        $investment = InvestmentPlan::create([
+            'is_active'=> 0,
+            'capital'=>$request->capital,
+            'plan'=> $plan,
+            'total_roi'=>$roiPercent,
+            'duration'=>$days,
+            'inv_type'=> 'flex',
+            'inv_start'=> $start_date,
+            'inv_end'=> $end_date,
+            'user_id'=> $id,
+            'reference'=> $reference
+        ]);
+        $comment = 'A '.$days.' days Flex Investment with '.$roiPercent.'% ROI and a capital of N'.number_format($request->capital, 2).' was created by '.Auth::user()->firstname.' '.Auth::user()->lastname .' with reference number '.$reference;
+        $this->saveNotification(Auth::user()->id, 'Investment Creation Notification', $comment, 'investment');
+        return response()->json([
+            'message'=>'success',
+            'status'=>200
+        ]);       
     }
 
     public function create(Request $request){
@@ -473,6 +497,90 @@ class InvestmentPlanController extends Controller
         }   
         
         return response()->json(['message'=>'error', 'status'=>200]);
+    }
+
+    public function withdrawFromInvestmentPlanDetail(Request $request, $id){
+        $plan = InvestmentPlan::find($request->plan_id);
+        $planDetail = InvestmentPlanDetail::find($id);
+        $capital = $planDetail->capital;
+        if ($capital < $request->amount) {
+            return response()->json(['message'=>'Maximum amount you can withdraw is ₦'.number_format($capital).'.', 'status'=>200]);
+        }
+        $today = Carbon::now();
+        $check = true;
+
+        $lastWithdrawal = Withdrawal::where('user_id', auth()->id())->orderBy('created_at', 'desc')->first();
+        $dateToday = date('Y-m-d');
+        $lastWithdrawalDate = date('Y-m-d', strtotime($lastWithdrawal->created_at));
+        if ($plan->withdrawal_date) {
+            if ($dateToday <= $lastWithdrawalDate){
+                $check = true;
+            }else{
+                $check = $this->checkWithdrawalDay($plan->withdrawal_date);
+            }
+        }
+        else{
+            $check = $this->checkWithdrawalDay($plan->created_at);
+        }
+        $nextDate = $today->diffInDays($plan->withdrawal_date);
+        $plural = ($nextDate > 1)? 's':'';
+        if (!$check) {
+            return response()->json(['message'=>'This plan only
+            allows a day of unlimited withdrawal every 90 days. '.$nextDate.' day'.$plural.' until your next
+            withdrawal.', 'status'=>200]);
+        }
+
+        $amount = $request->amount;
+        $newAmount = $capital - $amount;
+        $amountPaid = $amount - round((20/100) * $amount);
+        $roiPercent = 0;
+        if($plan->plan == 'STUDENT'){
+            $roiPercent =  0.084;
+        }
+        else if($plan->plan == 'SALARY'){
+            $roiPercent =  0.1;
+        }
+        else if($plan->plan == 'BUSINESS'){
+            $roiPercent =  0.12;
+        }
+        $roi_per_day = round($roiPercent * $planDetail->days_remaining,2);
+        $roi_earned = round($newAmount * ($roi_per_day / 100), 2);
+        $planDetail->roi_earned = $roi_earned;
+        $planDetail->roi = $roi_per_day;
+        $planDetail->capital = $newAmount;
+        $planDetail->amount_withdrawn = $planDetail->amount_withdrawn + $amount;
+        $planDetail->amount_paid = $planDetail->amount_paid + $amountPaid;
+        $planDetail->save();
+
+        $plan->withdrawal_date = $today->addDays(90);
+        
+        $plan->save();
+
+        $reference = strtoupper($this->generateRandomString());
+
+        $withdrawal = new Withdrawal();
+        $withdrawal->reference = $reference;
+        $withdrawal->amount = $amountPaid;
+        $withdrawal->status = 1;
+        $withdrawal->user_id = auth()->user()->id;
+        $withdrawal->save();
+
+        $qgwallet = QGWallets::create([
+            'amount'=> $amount,
+            'status'=> 1,
+            'user_id'=> $plan->user_id
+        ]);
+
+        return response()->json(['message'=>'success', 'status'=>200]);
+              
+    }
+
+    public function checkWithdrawalDay($lastWithdrawalDate)
+    {
+        $today = Carbon::now();
+        $nextWithdrawalDate = Carbon::parse($lastWithdrawalDate)->addDays(90);
+        return $today->greaterThanOrEqualTo($nextWithdrawalDate);
+        
     }
 
     public function withdrawFromInvestmentPlan(Request $request){

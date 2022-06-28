@@ -120,6 +120,7 @@ Route::prefix('investor')->group(function () {
 	Route::delete('/plan/delete', [InvestmentPlanController::class, 'delete']);
 	Route::delete('/plan/deactivate', [InvestmentPlanController::class, 'deactivate']);
 	Route::post('/withdrawal/plan', [InvestmentPlanController::class, 'withdrawFromInvestmentPlan']);
+	Route::post('/withdrawal/flex/plan/{id}', [InvestmentPlanController::class, 'withdrawFromInvestmentPlanDetail']);
 });
 
 Route::post('/webhook', [WebhookController::class, 'index']);

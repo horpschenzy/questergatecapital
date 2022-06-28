@@ -282,9 +282,27 @@
                                         <div class="w-full md:w-full px-3">
                                             <div aria-required="true" aria-invalid="true">
                                             <label><strong>Plan</strong></label> 
-                                                <select name="plan" class="px-6 py-3 rounded text-gray-900 border bg-white mt-2 border-gray-400" style="width: 100%; font-weight: bold" id="invFlexDuration">
-                                                    <option value="QG-X12:360:0.089">QG-X12: 360 days “ROI 0.089% per day”</option>
-                                                    <option value="QG-X24:720:0.12">QG-X12:  720 days “ROI 0.12% per day”</option>
+                                                <select name="plan" class="px-6 py-3 rounded text-gray-900 border bg-white mt-2 border-gray-400" style="width: 100%; font-weight: bold" id="invFlexPlan">
+                                                    <option value="STUDENT">QG FLEX- STUDENT</option>
+                                                    <option value="SALARY">QG FLEX SALARY</option>
+                                                    <option value="BUSINESS">QG FLEX - BUSINESS</option>
+                                                </select> 
+                                            </div>
+                                        </div> 
+                                    </div> 
+                                    <div class="flex flex-wrap -mx-3">
+                                        <div class="w-full md:w-full px-3">
+                                            <div aria-required="true" aria-invalid="true">
+                                            <label><strong>Duration</strong></label> 
+                                                <select name="duration" class="px-6 py-3 rounded text-gray-900 border bg-white mt-2 border-gray-400" style="width: 100%; font-weight: bold" id="invFlexDuration">
+                                                    <option value="5">5 Months</option>
+                                                        <option value="6">6 Months</option>
+                                                        <option value="7">7 Months</option>
+                                                        <option value="8">8 Months</option>
+                                                        <option value="9">9 Months</option>
+                                                        <option value="10">10 Months</option>
+                                                        <option value="11">11 Months</option>
+                                                        <option value="12">1 Year</option>
                                                 </select> 
                                             </div>
                                         </div> 

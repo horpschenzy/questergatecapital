@@ -75,9 +75,26 @@
                                         <div class="flex flex-wrap mt-5 -mx-3">
                                             <div class="w-full md:w-2/2 px-3">
                                                 <div class="relative">
+                                                    <select class="px-3 py-3 rounded text-gray-900 border bg-white mt-2 border-gray-400" style="width: 100%; font-weight: bold" id="invFlexPlan">
+                                                        <option value="STUDENT">QG FLEX- STUDENT</option>
+                                                        <option value="SALARY">QG FLEX SALARY</option>
+                                                        <option value="BUSINESS">QG FLEX - BUSINESS</option>
+                                                    </select>
+                                                </div>
+                                            </div> 
+                                        </div>                                         
+                                        <div class="flex flex-wrap mt-5 -mx-3">
+                                            <div class="w-full md:w-2/2 px-3">
+                                                <div class="relative">
                                                     <select class="px-3 py-3 rounded text-gray-900 border bg-white mt-2 border-gray-400" style="width: 100%; font-weight: bold" id="invFlexDuration">
-                                                        <option value="12">QG-X12 Min. ROI 32%</option>
-                                                        <option value="24">QG-X24 Min. ROI 86.4%</option>
+                                                        <option value="5">5 Months</option>
+                                                        <option value="6">6 Months</option>
+                                                        <option value="7">7 Months</option>
+                                                        <option value="8">8 Months</option>
+                                                        <option value="9">9 Months</option>
+                                                        <option value="10">10 Months</option>
+                                                        <option value="11">11 Months</option>
+                                                        <option value="12">1 Year</option>
                                                     </select>
                                                 </div>
                                             </div> 
@@ -191,9 +208,8 @@
                                         <div class="flex flex-wrap mt-5 -mx-3">
                                             <div class="w-full md:w-2/2 px-3">
                                                 <div class="relative">
-                                                    <select class="px-3 py-3 rounded text-gray-900 border bg-white mt-2 border-gray-400" style="width: 100%; font-weight: bold" id="invDuration">                                                     <option value="6" selected="">QG-6: ROI 10%</option>
+                                                    <select class="px-3 py-3 rounded text-gray-900 border bg-white mt-2 border-gray-400" style="width: 100%; font-weight: bold" id="invDuration">
                                                         <option value="12">QG-12: Min. ROI 45%</option>
-                                                        <option value="18">QG-18: Min. ROI 70%</option>
                                                         <option value="24">QG-24: Min. ROI 120%</option> 
                                                     </select>
                                                 </div>

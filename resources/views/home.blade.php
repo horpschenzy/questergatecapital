@@ -502,11 +502,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 </div> 
                             </div>
             
+                            <div class="mb-5">
+                              <div class="relative">
+                                  <select class="px-3 py-3 rounded text-gray-900 border bg-white mt-2 border-gray-400" style="width: 100%; font-weight: bold" id="invFlexPlan">
+                                    <option value="STUDENT">QG FLEX- STUDENT</option>
+                                    <option value="SALARY">QG FLEX SALARY</option>
+                                    <option value="BUSINESS">QG FLEX - BUSINESS</option>
+                                  </select>
+                              </div>
+                            </div>
                             <div class="">
                               <div class="relative">
                                   <select class="px-3 py-3 rounded text-gray-900 border bg-white mt-2 border-gray-400" style="width: 100%; font-weight: bold" id="invFlexDuration">
-                                    <option value="12">QG-X12 Min. ROI 32%</option>
-                                    <option value="24">QG-X24 Min. ROI 86.4%</option>
+                                    <option value="5">5 Months</option>
+                                    <option value="6">6 Months</option>
+                                    <option value="7">7 Months</option>
+                                    <option value="8">8 Months</option>
+                                    <option value="9">9 Months</option>
+                                    <option value="10">10 Months</option>
+                                    <option value="11">11 Months</option>
+                                    <option value="12">1 Year</option>
                                   </select>
                               </div>
                             </div>
