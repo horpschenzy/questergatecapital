@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/questergatecapital/public/css/page.css" id="main_style">
   <link rel="stylesheet" href="/questergatecapital/public/css/scrolltop.css">
+  <link rel="stylesheet" href="/questergatecapital/public/dist/morphext.css">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1M668LQ33H"></script>
@@ -25,7 +26,12 @@
   <script type="text/javascript"> window.$crisp=[];window.CRISP_WEBSITE_ID="59767aec-ab5f-49a2-9233-f872ade8029a";(function(){ d=document;s=d.createElement("script"); s.src="https://client.crisp.chat/l.js"; s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})(); </script>
 
 <style>
-  #scroll-top-btn {
+.display-y {
+    font-size: 2.6rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+#scroll-top-btn {
     display: inline-block;
     background-color: #3b8cb9;
     width: 50px;
@@ -105,13 +111,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <a id="scroll-top-btn"></a>
     <div class="position-relative bg-img-hero" style="background-image: url(/questergatecapital/public/img/abstract-shapes-12.svg);">
-      <div class="container space-top-4 space-bottom-lg-2">
+      <div class="container space-top-3 space-bottom-lg-2">
         <div class="row justify-content-lg-between align-items-md-center">
           <div class="col-md-7 col-lg-7 mb-7 mb-md-0">
             <div class="mb-5">
-              
-              <h1 class="display-4 mb-3">WE MAKE INVESTING SIMPLER, ACCESSIBLE AND SAFER</h1>
-              <p class="lead">Invest and Grow your money safely</p>
+              <h3 class="display-y mb-3">
+                We are here to help you <br>
+                <span id="js-rotating" style="color: #3b8cb9">
+                  <strong>Access the safest investments, Achieve your financial goals, Turn investing into a cool habit, Create another stream of income. </strong>
+                </span>
+              </h3>
+              <p class="lead">Start your investment journey today</p>
             </div>
             <a class="position-static btn btn-indigo btn-wide transition-3d-hover" href="investment-plan">
             See Investment Plans
@@ -132,14 +142,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     
     <div class="container space-2 space-lg-3 space-bottom-3" style="margin-bottom: -7rem !important">
       <div class="row align-items-lg-center">
-        <div class="col-lg-5 order-lg-2 mb-7 mb-lg-0">
-          <div class="mb-5">
-            <h2 class="mb-3">Things You Should Know About Us</h2>
-            
+        <div class="col-lg-12 order-lg-12 mb-2 mb-lg-0">
+          <div class="w-md-75 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
+            <h2 class="padding-bottom: 20px">Things You Should Know About Us</h2>
           </div>
 
           <!-- Info -->
-          <div class="media pb-3">
+          {{-- <div class="media pb-3">
             <span class="icon icon-xs icon-soft-indigo icon-circle mr-3">
               <i class="fas fa-check"></i>
             </span>
@@ -173,11 +182,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
           
           <!-- End Info -->
-        </div>
+        </div> --}}
 
-        <div class="col-lg-7 order-lg-1">
+        <div class="col-lg-12">
           <div class="position-relative">
-            <img class="img-fluid rounded" src="/questergatecapital/public/img/social.jpg" alt="Social">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img class="w-100" style="height: 500px;" src="/questergatecapital/public/img/QG - 3 things a.jpg" alt="First slide">
+                </div>
+                <div class="carousel-item">
+                  <img class="w-100" style="height: 500px;" src="/questergatecapital/public/img/QG - 3 things b.jpg" alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                  <img class="w-100" style="height: 500px;" src="/questergatecapital/public/img/QG - 3 things c.jpg" alt="Third slide">
+                </div>
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+            {{-- <img class="img-fluid rounded" src="/questergatecapital/public/img/social.jpg" alt="Social"> --}}
             <figure class="max-w-19rem w-100 position-absolute top-0 left-0 z-index-n1">
               <div class="mt-n7 ml-n7">
                 <img class="img-fluid" src="/questergatecapital/public/img/dots-2.svg" alt="Image Description">
@@ -197,12 +232,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- End Title -->
         
          <div class="row align-items-lg-center">
-            <div class="col-lg-5 order-lg-1 mb-7 mb-lg-0">
-              <div class="mb-5">
+            {{-- <div class="col-lg-5 order-lg-1 mb-7 mb-lg-0"> --}}
+              {{-- <div class="mb-5">
                 <h2 class="mb-3">We invest only within the Financial market</h2>
                 
-              </div>
-              <p class="mb-1">We invest in:</>
+              </div> --}}
+              {{-- <p class="mb-1">We invest in:</>
               <!-- Info -->
               <div class="media pb-3">
                 <span class="icon icon-xs icon-soft-indigo icon-circle mr-3">
@@ -244,11 +279,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <p class="text-body mb-0">Commodities</p>
                 </div>
               </div>
-              
+               --}}
               <!-- End Info -->
-            </div>
+            {{-- </div> --}}
     
-            <div class="col-lg-7 order-lg-2">
+            <div class="col-7 float-start">
               <div class="position-relative">
                 <img class="img-fluid rounded" src="/questergatecapital/public/img/finance.jpg" alt="Social">
                 <figure class="max-w-19rem w-100 position-absolute top-0 left-0 z-index-n1">
@@ -258,6 +293,56 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </figure>
               </div>
             </div>
+            {{-- carousel --}}
+            <div class="col-5 float-end"> 
+               <div class="mb-5">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <i><h3 class="mb-4"><span class="font-bold" style="color: #3b8cb9">Investing with Questergate has helped me grow more financially.
+                      Because it is so easy to invest, I am able to invest money I would have spent.</span></h3></i>
+                      <i><span class="font-bold" style="color: #3b8cb9"><h5 style="color: #3b8cb9">Elijah Damilare</h5>
+                        <p class="mb-4">QuesterGate Investor since 2020.</p></span></i>
+                </div>
+                <div class="carousel-item">
+                  <i><h3 class="mb-4"><span class="font-bold" style="color: #3b8cb9">It has been amazing.</span></h3></i>
+                    <i><span class="font-bold" style="color: #3b8cb9"><h5 style="color: #3b8cb9">Mrs Agnes</h5>
+                      <p class="mb-4">QuesterGate Investor since 2019.</p></span></i>
+                </div>
+                <div class="carousel-item">
+                  <i><h3 class="mb-4"><span class="font-bold" style="color: #3b8cb9">Investing with Questergate has been really safe and profitable for me.
+                    I am able to invest with ease and be assured of the security of my capital.</span></h3></i>
+                    <i><span class="font-bold" style="color: #3b8cb9"><h5 style="color: #3b8cb9">Ifeoluwa Oluwafunmike</h5>
+                      <p class="mb-4">QuesterGate Investor since 2017.</p></span></i>
+                </div>
+                <div class="carousel-item">
+                  <i><h3 class="mb-4"><span class="font-bold" style="color: #3b8cb9">It has really been an awesome experience investing with Questergate. It all just goes smoothly.</span></h3></i>
+                    <i><span class="font-bold" style="color: #3b8cb9"><h5 style="color: #3b8cb9">Ayodeji Samuel</h5>
+                      <p class="mb-4">QuesterGate Investor since 2019.</p></span></i>
+                </div>
+                <div class="carousel-item">
+                  <i><h3 class="mb-4"><span class="font-bold" style="color: #3b8cb9">The ROI is great and encouraging. It has been a good experience.</span></h3></i>
+                    <i><span class="font-bold" style="color: #3b8cb9"><h5 style="color: #3b8cb9">Femi Oguntuberu</h5>
+                      <p class="mb-4">QuesterGate Investor since 2019.</p></span></i>
+                </div>
+              </div>
+              
+              <a style="color: #3b8cb9" class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a style="color: #3b8cb9" class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+            </div>
+        </div>
 
         </div>
     </div>
@@ -817,11 +902,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   @include('generic.footer')
 
-
   <script src="/questergatecapital/public/js/jquery.js"></script>
   <script src="/questergatecapital/public/js/moment.js"></script>
   <script src="/questergatecapital/public/js/main.js"></script>
   <script src="/questergatecapital/public/js/script.js?v=18"></script>
+<script src="/questergatecapital/public/dist/morphext.min.js"></script>
+
+  <script>
+    $("#js-rotating").Morphext({
+      // The [in] animation type. Refer to Animate.css for a list of available animations.
+      animation: "bounceIn",
+      // An array of phrases to rotate are created based on this separator. Change it if you wish to separate the phrases differently (e.g. So Simple | Very Doge | Much Wow | Such Cool).
+      separator: ",",
+      // The delay between the changing of each phrase in milliseconds.
+      speed: 6000,
+      complete: function () {
+          // Called after the entrance animation is executed.
+      }
+  });
+  </script>
   <script>
     var d = new Date();
     var n = d.getFullYear();
