@@ -561,7 +561,7 @@ class InvestmentPlanController extends Controller
         $withdrawal = new Withdrawal();
         $withdrawal->reference = $reference;
         $withdrawal->amount = $amountPaid;
-        $withdrawal->status = 1;
+        $withdrawal->status = 3;
         $withdrawal->user_id = auth()->user()->id;
         $withdrawal->save();
 
